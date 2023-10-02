@@ -1,6 +1,7 @@
 export {default as Alert} from "./components/Alert.vue"
 export {default as Badge} from "./components/Badge.vue"
-export {default as Button} from "./components/Button.vue"
+import Button from "./components/Button.vue"
+
 export {default as Card} from "./components/Card.vue"
 export {default as Checkbox} from "./components/Checkbox.vue"
 export {default as DatePicker} from "./components/DatePicker.vue"
@@ -22,3 +23,5 @@ export {default as Text} from "./components/Text.vue"
 export {default as TextArea} from "./components/TextArea.vue"
 export {default as Tile} from "./components/Tile.vue"
 export {default as Toast} from "./components/Toast.vue"
+
+export {Button}
