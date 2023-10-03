@@ -1,0 +1,70 @@
+<script setup lang="ts">
+import {computed} from 'vue'
+
+type TSizes = 'lg' | 'sm' | 'md'
+const emit = defineEmits<{
+    (e: 'update:modelValue', value: boolean): void,
+    (e: 'change', value: boolean): void,
+}>()
+const props = withDefaults(defineProps<{
+    label?: string,
+    size?: TSizes,
+    modelValue: boolean,
+    disabled?: boolean,
+    errors:string,
+}>(), {
+    label: '',
+    size: 'md',
+    modelValue: false,
+    disabled: false,
+    errors:'',
+})
+
+const modelValueSync = computed({
+    get(): boolean {
+        return props.modelValue
+    },
+    set(value: boolean) {
+        if (props.disabled) return
+        emit('update:modelValue', value)
+        emit('change', value)
+    }
+})
+
+const onClick = () => {
+    if (props.disabled) return
+    modelValueSync.value = !props.modelValue
+}
+</script>
+
+<template>
+
+    <label class="relative inline-flex items-center cursor-pointer"
+           :class="{
+                'my-2.5': size==='sm' || size==='md',
+           }"
+           @click.stop.prevent="onClick"
+    >
+        <input type="checkbox" value="" class="sr-only peer"
+               v-model="modelValueSync"
+               :disabled="disabled"
+        >
+        <!--suppress HtmlUnknownTag -->
+        <div
+            class="bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:bg-white after:border-gray-300 after:border after:rounded-full after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"
+            :class="{
+                'after:h-4 after:w-4 w-9 h-5  after:top-[2px] after:left-[2px]': size==='sm',
+                'after:h-5 after:w-5 w-11 h-6 after:top-[2px] after:left-[2px]': size==='md',
+                'after:h-6 after:w-6 w-14 h-7 after:top-0.5   after:left-[4px]': size==='lg',
+            }"
+        ></div>
+        <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">
+            {{ label }}
+        </span>
+    </label>
+    <p v-if="errors.length>0"
+       class="mt-2 text-sm text-red-600 dark:text-red-500">
+        {{ errors }}
+    </p>
+
+</template>

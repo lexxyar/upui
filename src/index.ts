@@ -3,7 +3,7 @@
 import Button from "./components/Button.vue"
 
 // export {default as Card} from "./components/Card.vue"
-// export {default as Checkbox} from "./components/Checkbox.vue"
+import Checkbox from "./components/Checkbox.vue"
 // export {default as DatePicker} from "./components/DatePicker.vue"
 // export {default as DropdownItem} from "./components/DropdownItem.vue"
 // export {default as DropdownMenu} from "./components/DropdownMenu.vue"
@@ -11,7 +11,7 @@ import Button from "./components/Button.vue"
 // export {default as FileDropzone} from "./components/FileDropzone.vue"
 // export {default as FileTile} from "./components/FileTile.vue"
 // export {default as Header} from "./components/Header.vue"
-// export {default as InputText} from "./components/InputText.vue"
+import InputText from "./components/InputText.vue"
 // export {default as MenuButton} from "./components/MenuButton.vue"
 // export {default as MenuItem} from "./components/MenuItem.vue"
 // export {default as Progress} from "./components/Progress.vue"
@@ -24,4 +24,4 @@ import Button from "./components/Button.vue"
 // export {default as Tile} from "./components/Tile.vue"
 // export {default as Toast} from "./components/Toast.vue"
 
-export {Button}
+export {Button, Checkbox, InputText}
