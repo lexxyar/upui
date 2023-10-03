@@ -10,7 +10,8 @@
   "exports": {
     ".": {
       "import": "./dist/upui.js",
-      "require": "./dist/upui.umd.cjs"
+      "require": "./dist/upui.umd.cjs",
+      "types": "./dist/index.d.ts"
     },
     "./style.css": "./dist/style.css"
   },
