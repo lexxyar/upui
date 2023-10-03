@@ -19,7 +19,10 @@
     "dev": "vite",
     "build": "vite build && vue-tsc --emitDeclarationOnly",
     "types": "vue-tsc --declaration --emitDeclarationOnly",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "patch": "npm version patch",
+    "minor": "npm version minor",
+    "major": "npm version release"
   },
   "dependencies": {
     "@lexxsoft/upui": "file:../upui",
