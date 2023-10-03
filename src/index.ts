@@ -1,27 +1,51 @@
-// export {default as Alert} from "./components/Alert.vue"
-// export {default as Badge} from "./components/Badge.vue"
+import Alert from "./components/Alert.vue"
+import Badge from "./components/Badge.vue"
 import Button from "./components/Button.vue"
-
-// export {default as Card} from "./components/Card.vue"
+import Card from "./components/Card.vue"
 import Checkbox from "./components/Checkbox.vue"
-// export {default as DatePicker} from "./components/DatePicker.vue"
-// export {default as DropdownItem} from "./components/DropdownItem.vue"
-// export {default as DropdownMenu} from "./components/DropdownMenu.vue"
-// export {default as DropdownSeparator} from "./components/DropdownSeparator.vue"
-// export {default as FileDropzone} from "./components/FileDropzone.vue"
-// export {default as FileTile} from "./components/FileTile.vue"
-// export {default as Header} from "./components/Header.vue"
+import DatePicker from "./components/DatePicker.vue"
+import DropdownItem from "./components/DropdownItem.vue"
+import DropdownMenu from "./components/DropdownMenu.vue"
+import DropdownSeparator from "./components/DropdownSeparator.vue"
+import FileDropzone from "./components/FileDropzone.vue"
+import FileTile from "./components/FileTile.vue"
+import Header from "./components/Header.vue"
 import InputText from "./components/InputText.vue"
-// export {default as MenuButton} from "./components/MenuButton.vue"
-// export {default as MenuItem} from "./components/MenuItem.vue"
-// export {default as Progress} from "./components/Progress.vue"
-// export {default as Select} from "./components/Select.vue"
-// export {default as Switch} from "./components/Switch.vue"
-// export {default as Table} from "./components/Table.vue"
-// export {default as TableRow} from "./components/TableRow.vue"
-// export {default as Text} from "./components/Text.vue"
-// export {default as TextArea} from "./components/TextArea.vue"
-// export {default as Tile} from "./components/Tile.vue"
-// export {default as Toast} from "./components/Toast.vue"
+import MenuButton from "./components/MenuButton.vue"
+import MenuItem from "./components/MenuItem.vue"
+import Progress from "./components/Progress.vue"
+import Select from "./components/Select.vue"
+import Switch from "./components/Switch.vue"
+import Table from "./components/Table.vue"
+import TableRow from "./components/TableRow.vue"
+import Text from "./components/Text.vue"
+import TextArea from "./components/TextArea.vue"
+import Tile from "./components/Tile.vue"
+import Toast from "./components/Toast.vue"
 
-export {Button, Checkbox, InputText}
+export {
+    Alert,
+    Badge,
+    Button,
+    Card,
+    Checkbox,
+    DatePicker,
+    DropdownItem,
+    DropdownMenu,
+    DropdownSeparator,
+    FileDropzone,
+    FileTile,
+    Header,
+    InputText,
+    MenuButton,
+    MenuItem,
+    Progress,
+    Select,
+    Switch,
+    Table,
+    TableRow,
+    Text,
+    TextArea,
+    Tile,
+    Toast,
+}
