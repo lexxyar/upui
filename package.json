@@ -26,12 +26,12 @@
     "major": "npm version release"
   },
   "dependencies": {
-    "@lexxsoft/upui": "file:../upui",
     "@vueuse/components": "^10.4.1",
     "dateformat": "^5.0.3",
     "vue": "^3.2.47"
   },
   "devDependencies": {
+    "@lexxsoft/upui": "file:../upui",
     "@types/node": "^20.2.5",
     "@vitejs/plugin-vue": "^4.2.3",
     "autoprefixer": "^10.4.16",
