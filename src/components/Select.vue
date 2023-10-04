@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import {computed} from 'vue'
-// @ts-ignore
-import {v4} from "uuid";
 
 type TSizes = 'lg' | 'sm' | 'md'
 const emit = defineEmits<{
@@ -38,7 +36,7 @@ const modelValueSync = computed({
     }
 })
 
-const inputId = computed(() => v4())
+const inputId = computed(() => `sl-${Date.now()}`)
 </script>
 
 <template>

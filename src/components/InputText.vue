@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import {computed, ref, useSlots} from 'vue'
-// @ts-ignore
-import {v4} from "uuid";
 
 type TSizes = 'lg' | 'sm' | 'md'
 type TType = 'text' | 'email' | 'password'
@@ -39,7 +37,7 @@ const bFormEditable = ref(false)
 
 const slots = useSlots()
 
-const inputId = computed(() => v4())
+const inputId = computed(() => `it-${Date.now()}`)
 const syncModelValue = computed({
   get(): string {
     return sInnerValue.value

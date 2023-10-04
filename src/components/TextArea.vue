@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import {computed} from 'vue'
-import {v4} from "uuid";
 
 const emit = defineEmits<{
     (e: 'update:modelValue', value: string): void,
@@ -24,7 +23,7 @@ const props = withDefaults(defineProps<{
     errors: '',
 })
 
-const inputId = computed(() => v4())
+const inputId = computed(() => `ta-${Date.now()}`)
 
 const syncModelValue = computed({
     get(): string {

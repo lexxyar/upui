@@ -1,7 +1,6 @@
 <script setup lang="ts">
 
 import {computed} from "vue";
-import {v4} from "uuid";
 import FileTile from "./FileTile.vue";
 
 const emit = defineEmits<{
@@ -24,7 +23,7 @@ const props = withDefaults(defineProps<{
     multiple: false,
 })
 
-const inputId = computed(() => v4())
+const inputId = computed(() => `dz-${Date.now()}`)
 
 const onFileInputChange = (e: Event) => {
     emit('change', (e.target as HTMLInputElement).files)

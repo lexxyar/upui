@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import {computed, onMounted, onUnmounted, Ref, ref} from 'vue'
 // @ts-ignore
-import {v4} from "uuid";
-// @ts-ignore
 import dateFormat from 'dateformat'
 
 type TSizes = 'lg' | 'sm' | 'md'
@@ -139,7 +137,7 @@ const weekday = computed<Array<string>>(() => {
   const locale: string = Object.keys(localization).includes(props.locale) ? props.locale : 'en'
   return localization[locale].weekdays.short
 })
-const inputId = computed(() => v4())
+const inputId = computed(() => `dp-${Date.now()}`)
 const syncModelValue = computed(() => {
   if (!props.modelValue) return ''
   return dateFormat(props.modelValue, 'dd.mm.yyyy')
