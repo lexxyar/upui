@@ -13,7 +13,11 @@
       "require": "./dist/upui.umd.cjs",
       "types": "./dist/index.d.ts"
     },
-    "./style.css": "./dist/style.css"
+
+    "./dist/style.css": {
+      "import": "./dist/style.css",
+      "require": "./dist/style.css"
+    }
   },
   "types": "./dist/index.d.ts",
   "scripts": {
