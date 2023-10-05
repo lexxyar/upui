@@ -1,3 +1,4 @@
+import './assets/tailwind.css'
 import Alert from "./components/Alert.vue"
 import Badge from "./components/Badge.vue"
 import Button from "./components/Button.vue"
