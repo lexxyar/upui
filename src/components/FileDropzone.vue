@@ -2,6 +2,7 @@
 
 import {computed} from "vue";
 import FileTile from "./FileTile.vue";
+import InpeutErrors from "./inner/InpeutErrors.vue";
 
 const emit = defineEmits<{
     (e: 'change', value: any): void,
@@ -10,20 +11,20 @@ const emit = defineEmits<{
 const props = withDefaults(defineProps<{
     actionText?: string,
     helperText?: string,
-    errors?: string,
+    errors?: string|Array<string>|null,
     accept?: any,
     files?: any,
     multiple?:boolean,
 }>(), {
     actionText: '',
     helperText: '',
-    errors: '',
+    errors: null,
     accept: '*/*',
     files: [],
     multiple: false,
 })
 
-const inputId = computed(() => `dz-${Date.now()}`)
+const inputId = computed(() => `dz-${Date.now().toString().split("").sort(()=>Math.random()-.5).join('')}`)
 
 const onFileInputChange = (e: Event) => {
     emit('change', (e.target as HTMLInputElement).files)
@@ -68,10 +69,7 @@ const aFiles = computed(() => {
                       @delete="$emit('fileDelete', file)"
             />
         </div>
-        <p v-if="errors.length>0"
-           class="mt-2 text-sm text-red-600 dark:text-red-500">
-            {{ errors }}
-        </p>
+      <InpeutErrors :errors="errors"/>
     </div>
 
 </template>

@@ -2,16 +2,16 @@
 
 import {onMounted} from "vue";
 
-type TStyl = 'error' | 'success' | 'warning' | 'info' | 'none'
+type TStyl = 'error' | 'success' | 'warning' | 'info' | 'danger'
 const emit = defineEmits<{
     (e: 'remove'): void,
 }>()
 const props = withDefaults(defineProps<{
     message: string,
     styl?: TStyl,
-    duration: number,
+    duration?: number,
 }>(), {
-    styl: 'none',
+    styl: 'info',
     duration: 3000,
 })
 
@@ -36,7 +36,7 @@ onMounted(() => {
                 <span class="sr-only">Check icon</span>
             </div>
         </template>
-        <template v-if="styl==='error'">
+        <template v-if="['error','danger'].includes(styl)">
             <div
                 class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
                 <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"

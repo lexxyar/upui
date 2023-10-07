@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import {computed, ref, useSlots} from 'vue'
+import InpeutErrors from "./inner/InpeutErrors.vue";
 
 type TSizes = 'lg' | 'sm' | 'md'
 type TType = 'text' | 'email' | 'password'
@@ -14,7 +15,7 @@ const props = withDefaults(defineProps<{
   required?: boolean,
   placeholder?: string,
   size?: TSizes,
-  errors?: string,
+  errors?: string | Array<string> | null,
   disabled?: boolean,
   clearable?: boolean,
   type?: TType,
@@ -24,7 +25,7 @@ const props = withDefaults(defineProps<{
   required: false,
   placeholder: '',
   size: 'md',
-  errors: '',
+  errors: null,
   disabled: false,
   clearable: false,
   type: 'text',
@@ -37,7 +38,7 @@ const bFormEditable = ref(false)
 
 const slots = useSlots()
 
-const inputId = computed(() => `it-${Date.now()}`)
+const inputId = computed(() => `it-${Date.now().toString().split("").sort(() => Math.random() - .5).join('')}`)
 const syncModelValue = computed({
   get(): string {
     return sInnerValue.value
@@ -98,6 +99,7 @@ const hasDefaultSlot = computed(() => {
 const asArray = (arg: any): Array<any> => {
   return Array.isArray(arg) ? arg : arg != null ? [arg] : []
 }
+
 </script>
 
 <template>
@@ -106,8 +108,8 @@ const asArray = (arg: any): Array<any> => {
            :for="inputId"
            class="block mb-2 text-sm font-medium"
            :class="{
-                    'text-red-700  dark:text-red-500': errors.length > 0,
-                    'text-gray-900 dark:text-white'  : errors.length === 0,
+                    'text-red-700  dark:text-red-500': errors && errors.length > 0,
+                    'text-gray-900 dark:text-white'  : !errors || errors.length === 0,
                }"
     >
       {{ label }}
@@ -125,8 +127,8 @@ const asArray = (arg: any): Array<any> => {
                     'p-4   sm:text-md': size==='lg',
                     'p-2.5 text-sm': size==='md',
                     'p-2   sm:text-xs': size==='sm',
-                    'border-red-500  text-red-900  placeholder-red-700  focus:ring-red-500  focus:border-red-500  dark:text-red-500 dark:placeholder-red-500  dark:border-red-500 ': errors.length > 0,
-                    'border-gray-300 text-gray-900 placeholder-gray-700 focus:ring-blue-500 focus:border-blue-500 dark:text-white   dark:placeholder-gray-400 dark:border-gray-600': errors.length === 0,
+                    'border-red-500  text-red-900  placeholder-red-700  focus:ring-red-500  focus:border-red-500  dark:text-red-500 dark:placeholder-red-500  dark:border-red-500 ': errors && errors.length > 0,
+                    'border-gray-300 text-gray-900 placeholder-gray-700 focus:ring-blue-500 focus:border-blue-500 dark:text-white   dark:placeholder-gray-400 dark:border-gray-600': !errors || errors.length === 0,
                     'rounded-r-lg': !clearable && !selfFormed,
                     'border-r-0': clearable || selfFormed,
                     'cursor-not-allowed': disabled,
@@ -180,17 +182,8 @@ const asArray = (arg: any): Array<any> => {
         </template>
       </template>
     </div>
-    <p v-if="errors.length>0"
-       class="mt-2 text-sm text-red-600 dark:text-red-500">
-      {{ errors }}
-    </p>
+    <InpeutErrors :errors="errors"/>
   </div>
 
 </template>
 
-<style scoped>
-/*.up-input:focus ~ .up-input-button {*/
-/*    !*ToDo it does not work*!*/
-/*    @apply dark:focus:border-blue-500*/
-/*}*/
-</style>

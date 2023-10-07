@@ -1,55 +1,58 @@
 <script setup lang="ts">
 import {computed} from 'vue'
+import InpeutErrors from "./inner/InpeutErrors.vue";
 
 type TSizes = 'lg' | 'sm' | 'md'
 const emit = defineEmits<{
-    (e: 'update:modelValue', value: string): void,
-    (e: 'change', value: string): void,
+  (e: 'update:modelValue', value: string): void,
+  (e: 'change', value: string): void,
 }>()
 const props = withDefaults(defineProps<{
-    label?: string,
-    size?: TSizes,
-    modelValue: string,
-    disabled?: boolean,
-    data?: Array<any>,
-    keyField?: string,
-    valueField?: string,
+  label?: string,
+  size?: TSizes,
+  modelValue: string,
+  disabled?: boolean,
+  errors?: string | Array<string> | null,
+  data?: Array<any>,
+  keyField?: string,
+  valueField?: string,
 }>(), {
-    label: '',
-    size: 'md',
-    modelValue: '',
-    disabled: false,
-    // @ts-ignore
-    data: [],
-    keyField: 'id',
-    valueField: 'value',
+  label: '',
+  size: 'md',
+  modelValue: '',
+  disabled: false,
+  errors: null,
+  // @ts-ignore
+  data: [],
+  keyField: 'id',
+  valueField: 'value',
 })
 
 const modelValueSync = computed({
-    get(): string {
-        return props.modelValue
-    },
-    set(value: string) {
-        if (props.disabled) return
-        emit('update:modelValue', value)
-        emit('change', value)
-    }
+  get(): string {
+    return props.modelValue
+  },
+  set(value: string) {
+    if (props.disabled) return
+    emit('update:modelValue', value)
+    emit('change', value)
+  }
 })
 
-const inputId = computed(() => `sl-${Date.now()}`)
+const inputId = computed(() => `sl-${Date.now().toString().split("").sort(() => Math.random() - .5).join('')}`)
 </script>
 
 <template>
-
+  <div>
     <label v-if="label.length > 0"
-        :for="inputId"
+           :for="inputId"
            class="block mb-2 font-medium text-gray-900 dark:text-white"
            :class="{
                 'text-sm'  : size==='sm' || size==='md',
                 'text-base': size==='lg',
            }"
     >
-        {{ label }}
+      {{ label }}
     </label>
     <select :id="inputId"
             v-model="modelValueSync"
@@ -60,14 +63,16 @@ const inputId = computed(() => `sl-${Date.now()}`)
                 'px-4  py-3 text-base': size==='lg',
             }"
     >
-        <option v-for="item in data"
-                :key="item[keyField]"
-                :value="item[keyField]"
-                :selected="modelValue === item[keyField]"
-                :disabled="item[keyField] === '0'"
-                :hidden="item[keyField] === '0'"
-        >
-            {{item[valueField]}}
-        </option>
+      <option v-for="item in data"
+              :key="item[keyField]"
+              :value="item[keyField]"
+              :selected="modelValue === item[keyField]"
+              :disabled="item[keyField] === '0'"
+              :hidden="item[keyField] === '0'"
+      >
+        {{ item[valueField] }}
+      </option>
     </select>
+    <InpeutErrors :errors="errors"/>
+  </div>
 </template>

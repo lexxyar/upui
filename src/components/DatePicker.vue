@@ -2,6 +2,7 @@
 import {computed, onMounted, onUnmounted, Ref, ref} from 'vue'
 // @ts-ignore
 import dateFormat from 'dateformat'
+import InpeutErrors from "./inner/InpeutErrors.vue";
 
 type TSizes = 'lg' | 'sm' | 'md'
 type TDisplayState = 'days' | 'months' | 'years'
@@ -15,7 +16,7 @@ const props = withDefaults(defineProps<{
   required?: boolean,
   placeholder?: string,
   size?: TSizes,
-  errors?: string,
+  errors?: string | Array<string> | null,
   disabled?: boolean,
   locale?: string,
   anchor: TAnchor,
@@ -26,7 +27,7 @@ const props = withDefaults(defineProps<{
   required: false,
   placeholder: '',
   size: 'md',
-  errors: '',
+  errors: null,
   disabled: false,
   locale: 'en',
   anchor: 'tl',
@@ -137,7 +138,7 @@ const weekday = computed<Array<string>>(() => {
   const locale: string = Object.keys(localization).includes(props.locale) ? props.locale : 'en'
   return localization[locale].weekdays.short
 })
-const inputId = computed(() => `dp-${Date.now()}`)
+const inputId = computed(() => `dp-${Date.now().toString().split("").sort(() => Math.random() - .5).join('')}`)
 const syncModelValue = computed(() => {
   if (!props.modelValue) return ''
   return dateFormat(props.modelValue, 'dd.mm.yyyy')
@@ -284,8 +285,8 @@ onUnmounted(() => {
            :for="inputId"
            class="block mb-2 text-sm font-medium"
            :class="{
-                    'text-red-700  dark:text-red-500': errors.length > 0,
-                    'text-gray-900 dark:text-white'  : errors.length === 0,
+                    'text-red-700  dark:text-red-500': errors && errors.length > 0,
+                    'text-gray-900 dark:text-white'  : !errors || errors.length === 0,
                }"
     >
       {{ label }}
@@ -299,8 +300,8 @@ onUnmounted(() => {
                     'p-4   sm:text-md': size==='lg',
                     'p-2.5 text-sm': size==='md',
                     'p-2   sm:text-xs': size==='sm',
-                    'border-red-500  text-red-900  placeholder-red-700  focus:ring-red-500  focus:border-red-500  dark:text-red-500 dark:placeholder-red-500  dark:border-red-500 ': errors.length > 0,
-                    'border-gray-300 text-gray-900 placeholder-gray-700 focus:ring-blue-500 focus:border-blue-500 dark:text-white   dark:placeholder-gray-400 dark:border-gray-600': errors.length === 0,
+                    'border-red-500  text-red-900  placeholder-red-700  focus:ring-red-500  focus:border-red-500  dark:text-red-500 dark:placeholder-red-500  dark:border-red-500 ': errors && errors.length > 0,
+                    'border-gray-300 text-gray-900 placeholder-gray-700 focus:ring-blue-500 focus:border-blue-500 dark:text-white   dark:placeholder-gray-400 dark:border-gray-600': !errors || errors.length === 0,
                     'cursor-not-allowed': disabled,
                }"
              :placeholder="placeholder"
@@ -462,9 +463,6 @@ onUnmounted(() => {
       </div>
 
     </div>
-    <p v-if="errors.length>0"
-       class="mt-2 text-sm text-red-600 dark:text-red-500">
-      {{ errors }}
-    </p>
+    <InpeutErrors :errors="errors"/>
   </div>
 </template>

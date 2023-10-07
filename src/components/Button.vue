@@ -48,7 +48,7 @@ const stylToInternal = computed(() => {
   <template v-if="shape==='solid'">
     <button @click="$emit('click', $event)"
             :title="title"
-            class="font-medium rounded-lg focus:outline-none focus:ring-4 inline-flex items-center"
+            class="font-medium rounded-lg focus:outline-none focus:ring-4 inline-flex justify-center items-center"
             :class="{
         'text-white    bg-blue-700   hover:bg-blue-800   focus:ring-blue-300   dark:bg-blue-600   dark:hover:bg-blue-700   dark:focus:ring-blue-800                                                                                                                                                    ': stylToInternal==='default',
         'text-gray-500               hover:bg-gray-100   focus:ring-gray-200                      dark:hover:bg-gray-700   dark:focus:ring-gray-700                        dark:text-gray-400                                                                                                          ': stylToInternal==='dark',
@@ -78,7 +78,7 @@ const stylToInternal = computed(() => {
   <template v-if="shape==='outline'">
     <button @click="emit('click', $event)"
             :title="title"
-            class="dark:hover:text-white hover:text-white border focus:ring-4 rounded-lg text-center inline-flex items-center"
+            class="dark:hover:text-white hover:text-white border focus:ring-4 rounded-lg text-center inline-flex justify-center items-center"
             :class="{
        'focus:outline-none text-blue-700   border-blue-700   hover:bg-blue-800   focus:ring-blue-300   font-medium dark:border-blue-500   dark:text-blue-500   dark:hover:bg-blue-500   dark:focus:ring-blue-800  ': stylToInternal==='default',
        // 'focus:outline-none text-gray-900   border-gray-800   hover:bg-gray-900   focus:ring-gray-300   font-medium dark:border-gray-600   dark:text-gray-400   dark:hover:bg-gray-600   dark:focus:ring-gray-800  ': stylToInternal==='dark',
@@ -108,7 +108,7 @@ const stylToInternal = computed(() => {
   <template v-if="shape==='pill'">
     <button @click="$emit('click', $event)"
             :title="title"
-            class="font-medium rounded-full focus:outline-none focus:ring-4 inline-flex items-center"
+            class="font-medium rounded-full focus:outline-none focus:ring-4 inline-flex justify-center items-center"
             :class="{
         'text-white    bg-blue-700   hover:bg-blue-800   focus:ring-blue-300   text-center dark:bg-blue-600   dark:hover:bg-blue-700   dark:focus:ring-blue-800                                                                                                                                                ': stylToInternal==='default',
         'text-gray-500 bg-gray-800   hover:bg-gray-100   focus:ring-gray-200               dark:bg-gray-700   dark:hover:bg-gray-700   dark:focus:ring-gray-700                                             dark:border-gray-700                                                                               ': stylToInternal==='dark',
@@ -137,7 +137,7 @@ const stylToInternal = computed(() => {
   <template v-if="shape==='free'">
     <button @click="$emit('click', $event)"
             :title="title"
-            class="focus:ring-4 rounded-lg text-center inline-flex items-center"
+            class="focus:ring-4 rounded-lg text-center inline-flex justify-center items-center"
             :class="{
        'focus:outline-none text-blue-700   hover:text-blue-800   focus:ring-blue-300   font-medium dark:border-blue-500   dark:text-blue-500   dark:hover:text-blue-600   dark:focus:ring-blue-800                    ': stylToInternal==='default',
        // 'focus:outline-none text-gray-900   hover:text-gray-900   focus:ring-gray-300   font-medium dark:border-gray-600   dark:text-gray-400   dark:hover:text-gray-500   dark:focus:ring-gray-800  ': stylToInternal==='dark',
