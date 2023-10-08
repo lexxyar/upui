@@ -10,6 +10,7 @@ const props = withDefaults(defineProps<{
 
 const isDarkTheme = ref(false)
 const onToggleTheme = () => {
+  const initialMode = isDarkTheme.value ? 'dark' : 'light'
   if (isDarkTheme.value) {
     document.documentElement.classList.remove('dark')
     localStorage.setItem('color-theme', 'light')
@@ -19,10 +20,13 @@ const onToggleTheme = () => {
     localStorage.setItem('color-theme', 'dark')
     isDarkTheme.value = true
   }
+  const targetMode = isDarkTheme.value ? 'dark' : 'light'
+  console.log(`onToggleTheme: toggle from ${initialMode} to ${targetMode}`)
 }
 
 onMounted(() => {
   isDarkTheme.value = document.documentElement.classList.contains('dark')
+  console.log(`onMounted: initial mode: `, isDarkTheme.value ? 'dark' : 'light')
 })
 
 const classSize = computed(() => {
