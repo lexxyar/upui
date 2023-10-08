@@ -13,7 +13,7 @@ withDefaults(defineProps<{
 <template>
   <!-- Tile -->
   <div
-      class="launch-tile hover:cursor-pointer hover:drop-shadow-lg dark:hover:border-gray-600 flex flex-col flex-nowrap overflow-hidden p-3.5 bg-white border border-gray-200 rounded-lg shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700 w-48 h-48 dark:text-gray-200 text-gray-800">
+      class="launch-tile hover:cursor-pointer hover:drop-shadow-lg dark:hover:border-gray-600 flex flex-col flex-nowrap overflow-hidden p-3.5 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 w-48 h-48 dark:text-gray-200 text-gray-800">
     <div class="header">
       <div class="header_title font-extrabold">
           <span class="header_title_text">
