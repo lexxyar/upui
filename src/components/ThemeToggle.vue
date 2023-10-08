@@ -27,7 +27,7 @@ const onToggleTheme = () => {
 onMounted(() => {
   setTimeout(()=>{
     isDarkTheme.value = document.documentElement.classList.contains('dark')
-  }, 0)
+  }, 10)
 
   console.log(`onMounted: initial mode: `, isDarkTheme.value ? 'dark' : 'light')
 })
