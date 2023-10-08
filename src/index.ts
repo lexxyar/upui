@@ -23,6 +23,7 @@ import Text from "./components/Text.vue"
 import TextArea from "./components/TextArea.vue"
 import ThemeToggle from "./components/ThemeToggle.vue"
 import Tile from "./components/Tile.vue"
+import LaunchTile from "./components/Tile/LaunchTile.vue"
 import Toast from "./components/Toast.vue"
 
 export {
@@ -50,5 +51,6 @@ export {
     TextArea,
     ThemeToggle,
     Tile,
+    LaunchTile,
     Toast,
 }
