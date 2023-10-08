@@ -21,6 +21,7 @@ import Table from "./components/Table.vue"
 import TableRow from "./components/TableRow.vue"
 import Text from "./components/Text.vue"
 import TextArea from "./components/TextArea.vue"
+import ThemeToggle from "./components/ThemeToggle.vue"
 import Tile from "./components/Tile.vue"
 import Toast from "./components/Toast.vue"
 
@@ -47,6 +48,7 @@ export {
     TableRow,
     Text,
     TextArea,
+    ThemeToggle,
     Tile,
     Toast,
 }
