@@ -51,8 +51,9 @@ const onCheckboxClick = (e: Event) => {
              v-if="!!$slots.default"
              class="ml-2 text-sm font-medium"
              :class="{
-            'text-gray-900 dark:text-gray-300': !disabled,
-            'text-gray-400 dark:text-gray-500': disabled,
+            'text-gray-900 dark:text-gray-300': !disabled && !errors,
+            'text-gray-400 dark:text-gray-500': disabled && !errors,
+            'text-red-500'                    : errors
                }"
       >
         <slot/>

@@ -300,7 +300,7 @@ onUnmounted(() => {
                     'p-4   sm:text-md': size==='lg',
                     'p-2.5 text-sm': size==='md',
                     'p-2   sm:text-xs': size==='sm',
-                    'border-red-500  text-red-900  placeholder-red-700  focus:ring-red-500  focus:border-red-500  dark:text-red-500 dark:placeholder-red-500  dark:border-red-500 ': errors && errors.length > 0,
+                    'border-danger-500  text-danger-900  placeholder-danger-700  focus:ring-danger-500  focus:border-danger-500  dark:text-danger-500 dark:placeholder-danger-500  dark:border-danger-500 ': errors && errors.length > 0,
                     'border-gray-300 text-gray-900 placeholder-gray-700 focus:ring-blue-500 focus:border-blue-500 dark:text-white   dark:placeholder-gray-400 dark:border-gray-600': !errors || errors.length === 0,
                     'cursor-not-allowed': disabled,
                }"
@@ -311,40 +311,47 @@ onUnmounted(() => {
       >
 
       <template v-if="clearable">
-            <span
-                class="up-input-button cursor-pointer inline-flex items-center px-3 text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border border-l-0 border-gray-300 dark:text-gray-400 dark:border-gray-600"
-                @click="onClear"
-            >
-    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
-         xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
-</svg>
-  </span>
+        <div
+            class="up-input-button cursor-pointer inline-flex items-center px-3 text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border border-l-0 border-gray-300 dark:text-gray-400 dark:border-gray-600"
+            @click="onClear"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+               xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </div>
       </template>
 
-      <span
+      <!-- Calendar button -->
+      <div
           @click="showDropDown = !showDropDown"
-          class="up-input-button border cursor-pointer inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-r-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600"
+          class="up-input-button border cursor-pointer inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border-l-0 rounded-r-md dark:bg-gray-600 dark:text-gray-400"
+          :class="{
+            'border-danger-500'                    : errors,
+            'border-gray-300 dark:border-gray-600' : !errors,
+          }"
       >
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-         class="w-5 h-5">
-      <path stroke-linecap="round" stroke-linejoin="round"
-            d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/>
-    </svg>
-  </span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+             class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/>
+        </svg>
+      </div>
 
+      <!-- Calendar dropdown -->
       <div
           v-if="showDropDown"
-          class=" absolute z-50 pt-2 active block datepicker-orient-bottom datepicker-orient-left"
+          class="absolute z-50 pt-2 active block datepicker-orient-bottom datepicker-orient-left"
           :class="{
-                    'top-8  ': size==='lg',
+                    'top-8  ': size==='sm',
                     'top-9  ': size==='md',
-                    'top-10 ': size==='sm',
+                    'top-14 ': size==='lg',
                     'left-0 ': anchor === 'tl',
                     'right-0': anchor === 'tr',
                     }"
       >
         <div class="datepicker-picker inline-block rounded-lg bg-white dark:bg-gray-700 shadow-lg p-4">
+          <!-- Header -->
           <div class="datepicker-header">
             <div
                 class="datepicker-title bg-white dark:bg-gray-700 dark:text-white px-2 py-3 text-center font-semibold"
@@ -389,9 +396,12 @@ onUnmounted(() => {
               </button>
             </div>
           </div>
+
+          <!-- Calendar content -->
           <div class="datepicker-main p-1">
             <div class="datepicker-view flex">
 
+              <!-- Days -->
               <template v-if="displayState === 'days'">
                 <div class="days">
                   <div class="days-of-week grid grid-cols-7 mb-1">
@@ -414,13 +424,14 @@ onUnmounted(() => {
                 </div>
               </template>
 
+              <!-- Months -->
               <template v-if="displayState === 'months'">
                 <div class="months">
                   <div class="datepicker-grid w-64 grid grid-cols-4">
                     <span v-for="i in 12"
-                          class="datepicker-cell text-white block flex-1 leading-9 border-0 rounded-lg cursor-pointer text-center font-semibold text-sm day prev "
+                          class="datepicker-cell text-gray-800 dark:text-white block flex-1 leading-9 border-0 rounded-lg cursor-pointer text-center font-semibold text-sm day prev"
                           :class="{
-                          'bg-blue-700 dark:bg-blue-600  ': i-1 === displayMonthNum && displayYear === (modelValue?.getFullYear()??null),
+                          'text-white bg-blue-700 dark:bg-blue-600  ': i-1 === displayMonthNum && displayYear === (modelValue?.getFullYear()??null),
                           'hover:bg-gray-100 dark:hover:bg-gray-600': !(i-1 === displayMonthNum && displayYear === (modelValue?.getFullYear()??null)),
                         }"
                           @click.stop.prevent="onMonthCheck(i-1)"
@@ -429,13 +440,14 @@ onUnmounted(() => {
                 </div>
               </template>
 
+              <!-- Years -->
               <template v-if="displayState === 'years'">
                 <div class="years">
                   <div class="datepicker-grid w-64 grid grid-cols-4">
                     <span v-for="i in yearRange"
-                          class="datepicker-cell text-white block flex-1 leading-9 border-0 rounded-lg cursor-pointer text-center font-semibold text-sm day prev "
+                          class="datepicker-cell text-gray-800 dark:text-white block flex-1 leading-9 border-0 rounded-lg cursor-pointer text-center font-semibold text-sm day prev "
                           :class="{
-                          'bg-blue-700 dark:bg-blue-600  ': i === selectedYearTmp,
+                          'text-white bg-blue-700 dark:bg-blue-600  ': i === selectedYearTmp,
                           'hover:bg-gray-100 dark:hover:bg-gray-600': i !== selectedYearTmp,
                         }"
                           @click.stop.prevent="onYearCheck(i)"
@@ -446,6 +458,8 @@ onUnmounted(() => {
 
             </div>
           </div>
+
+          <!-- Footer -->
           <div class="datepicker-footer">
             <div class="datepicker-controls flex space-x-2 mt-2">
               <button type="button"

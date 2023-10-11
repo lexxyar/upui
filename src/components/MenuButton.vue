@@ -21,8 +21,12 @@ if (isVueRouterInstalled) {
   router = getCurrentInstance()?.appContext.config.globalProperties.$router
 }
 
+const hasSlot = (name:string) => {
+  return !!slots[name] || !asArray(slots[name]).every((vnode: any) => vnode.type === Comment)
+}
+
 const hasSubmenuSlot = computed(() => {
-  return !!slots['submenu'] || !asArray(slots['submenu']).every((vnode: any) => vnode.type === Comment)
+  return hasSlot('default')
 })
 
 const asArray = (arg: any): Array<any> => {
@@ -56,6 +60,7 @@ const onItemClickHandler = () => {
   }
 
   isExpanded.value = !isExpanded.value
+  return false
 }
 const hrefTo = computed(() => {
   if (isVueRouterInstalled && !!props.to) {
@@ -67,11 +72,11 @@ const hrefTo = computed(() => {
 </script>
 
 <template>
-  <li>
+  <li class="list-none">
     <component :is="tagName"
                v-bind="tagAttributes"
                class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700"
-               @click.stop.prevent="onItemClickHandler"
+               @click.stop="onItemClickHandler"
     >
 
       <slot name="icon"/>
@@ -93,7 +98,7 @@ const hrefTo = computed(() => {
                   'hidden': !isExpanded,
                 }"
     >
-      <slot name="submenu"/>
+      <slot />
     </ul>
   </li>
 </template>

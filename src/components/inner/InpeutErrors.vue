@@ -21,7 +21,7 @@ const errorList = computed(() => {
 <template>
   <p v-if="errorList.length > 0"
      v-for="error in errorList" :key="error"
-     class="mt-2 text-sm text-red-600 dark:text-red-500">
+     class="mt-2 text-sm text-danger-500 dark:text-danger-500">
     {{ error }}
   </p>
 </template>

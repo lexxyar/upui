@@ -4,6 +4,6 @@
 
 <template>
     <li>
-        <div style="height: 1px;" class="bg-black opacity-40 dark:bg-white"></div>
+        <div class="h-[1px] border-b bg-transparent border-gray-200 dark:border-gray-700"></div>
     </li>
 </template>

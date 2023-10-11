@@ -46,21 +46,25 @@ const inputId = computed(() => `sl-${Date.now().toString().split("").sort(() => 
   <div>
     <label v-if="label.length > 0"
            :for="inputId"
-           class="block mb-2 font-medium text-gray-900 dark:text-white"
+           class="block mb-2 font-medium"
            :class="{
-                'text-sm'  : size==='sm' || size==='md',
-                'text-base': size==='lg',
+                'text-sm'                       : ['sm', 'md'].includes(size),
+                'text-base'                     : size==='lg',
+                'text-gray-900 dark:text-white' : !errors,
+                'text-red-500'                  : errors,
            }"
     >
       {{ label }}
     </label>
     <select :id="inputId"
             v-model="modelValueSync"
-            class="block text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            class="block border rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
             :class="{
-                'p-2        text-sm  ': size==='sm',
-                'p-2.5      text-sm  ': size==='md',
-                'px-4  py-3 text-base': size==='lg',
+                'p-2        text-sm  '                                               : size==='sm',
+                'p-2.5      text-sm  '                                               : size==='md',
+                'px-4  py-3 text-base'                                               : size==='lg',
+                'border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white' : !errors,
+                'border-red-500 text-red-500'                                        : errors,
             }"
     >
       <option v-for="item in data"
