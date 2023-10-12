@@ -3,10 +3,9 @@ import {
   Button, Header, Badge, Card, Checkbox, DatePicker,
   DropdownMenu, DropdownItem, DropdownSeparator, Toast,
   InputText, Progress, Select, Switch, TextArea, Table,
-  LaunchTile, MenuButton
+  LaunchTile, MenuButton, Pagination
 } from '@lexxsoft/upui'
 import {ref} from "vue";
-import Pagination from "./components/Pagination.vue";
 
 const btnStyles = ['primary', 'secondary', 'danger', 'warning', 'success', 'info']
 const btnShapes = ['solid', 'outline', 'pill', 'free']

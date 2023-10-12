@@ -3,7 +3,7 @@ import {Button} from "../index.ts";
 import {computed} from "vue";
 
 const emit = defineEmits<{
-  (e: 'pageClick', value: string): void,
+  (e: 'pageClick', value: number): void,
 }>()
 
 const props = withDefaults(defineProps<{
@@ -44,6 +44,10 @@ const to = computed(() => {
   return newVal <= props.total ? newVal : props.total
 })
 
+const pageCount = computed(() => {
+  return Math.ceil(props.total / props.perPage)
+})
+
 const links = computed(() => {
   const build = (pageNum: any = null) => {
     return {
@@ -52,20 +56,19 @@ const links = computed(() => {
     }
   }
 
-  const pageCount = Math.ceil(props.total / props.perPage)
   const currentPage: number = Number(props.currentPage)
   const aItems = []
   aItems.push(build())
-  if (pageCount > 10) {
-    for (let i = 1; i <= pageCount; i++) {
+  if (pageCount.value > 10) {
+    for (let i = 1; i <= pageCount.value; i++) {
 
       // First or last page
-      if (i === 1 || i === pageCount) {
+      if (i === 1 || i === pageCount.value) {
         aItems.push(build(i))
       }
 
       // if difference from current page between first or last page more than 9
-      else if (currentPage > 9 || currentPage < pageCount - 9) {
+      else if (currentPage > 9 || currentPage < pageCount.value - 9) {
         // If current page inside interval [-3; +3]
         if (i >= currentPage - 3 && i <= currentPage + 3) {
           aItems.push(build(i))
@@ -77,14 +80,14 @@ const links = computed(() => {
             aItems.push(build(i))
           }
           // if current page inside last 9 pages and iteration inside last 9 pages
-          else if (currentPage > pageCount - 9 && i > pageCount - 9) {
+          else if (currentPage > pageCount.value - 9 && i > pageCount.value - 9) {
             aItems.push(build(i))
           }
         }
       }
     }
   } else {
-    for (let i = 1; i <= pageCount; i++) {
+    for (let i = 1; i <= pageCount.value; i++) {
       aItems.push(build(i))
     }
   }
@@ -104,7 +107,17 @@ const shouldSpace = (currentNum: string): boolean => {
 }
 
 const changePageHandler = (pageNumber: string) => {
-  emit('pageClick', pageNumber)
+  if (pageNumber === '-1' && props.currentPage === 1) return;
+  if (pageNumber === '+1' && props.currentPage === pageCount.value) return;
+  if (pageNumber === '-1') {
+    emit('pageClick', props.currentPage - 1)
+    return;
+  }
+  if (pageNumber === '+1') {
+    emit('pageClick', props.currentPage + 1)
+    return;
+  }
+  emit('pageClick', Number(pageNumber))
 }
 </script>
 
