@@ -636,6 +636,18 @@ const textareaValue = ref('Text area value')
         </div>
       </section>
 
+      <section id="pagination">
+        <Header size="1">Pagination</Header>
+
+        <div class="mt-3">
+          <Header size="5"></Header>
+          <div class="w-full">
+            <Pagination total="1000" to="10" from="1" current-page="50"/>
+          </div>
+        </div>
+
+      </section>
+
       <section id="progress">
         <Header size="1">Progress</Header>
         <div class="mt-3">
@@ -769,17 +781,7 @@ const textareaValue = ref('Text area value')
 
       </section>
 
-      <section id="pagination">
-        <Header size="1">Pagination</Header>
 
-        <div class="mt-3">
-          <Header size="5"></Header>
-          <div class="w-full">
-            <Pagination total="1000" to="10" from="1" current-page="50"/>
-          </div>
-        </div>
-
-      </section>
     </div>
   </div>
 

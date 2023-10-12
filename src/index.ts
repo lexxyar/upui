@@ -14,6 +14,7 @@ import Header from "./components/Header.vue"
 import InputText from "./components/InputText.vue"
 import MenuButton from "./components/MenuButton.vue"
 import MenuItem from "./components/MenuItem.vue"
+import Pagination from "./components/Pagination.vue"
 import Progress from "./components/Progress.vue"
 import Select from "./components/Select.vue"
 import Switch from "./components/Switch.vue"
@@ -40,6 +41,7 @@ export {
     InputText,
     MenuButton,
     MenuItem,
+    Pagination,
     Progress,
     Select,
     Switch,
