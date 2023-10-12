@@ -2,7 +2,7 @@
 import {computed} from 'vue'
 import InpeutErrors from "./inner/InpeutErrors.vue";
 
-type TSizes = 'lg' | 'sm' | 'md'
+type TSizes = 'sm' | 'md' | 'lg'
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void,
   (e: 'change', value: string): void,
@@ -51,20 +51,20 @@ const inputId = computed(() => `sl-${Date.now().toString().split("").sort(() => 
                 'text-sm'                       : ['sm', 'md'].includes(size),
                 'text-base'                     : size==='lg',
                 'text-gray-900 dark:text-white' : !errors,
-                'text-red-500'                  : errors,
+                'text-danger-500'                  : errors,
            }"
     >
       {{ label }}
     </label>
     <select :id="inputId"
             v-model="modelValueSync"
-            class="block border rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            class="block border rounded-lg bg-gray-50 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:placeholder-gray-400 dark:focus:ring-primary-500 dark:focus:border-primary-500"
             :class="{
                 'p-2        text-sm  '                                               : size==='sm',
                 'p-2.5      text-sm  '                                               : size==='md',
                 'px-4  py-3 text-base'                                               : size==='lg',
                 'border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white' : !errors,
-                'border-red-500 text-red-500'                                        : errors,
+                'border-danger-500 text-danger-500'                                        : errors,
             }"
     >
       <option v-for="item in data"

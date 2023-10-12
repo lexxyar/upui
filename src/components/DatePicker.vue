@@ -285,7 +285,7 @@ onUnmounted(() => {
            :for="inputId"
            class="block mb-2 text-sm font-medium"
            :class="{
-                    'text-red-700  dark:text-red-500': errors && errors.length > 0,
+                    'text-danger-700  dark:text-danger-500': errors && errors.length > 0,
                     'text-gray-900 dark:text-white'  : !errors || errors.length === 0,
                }"
     >
@@ -295,13 +295,13 @@ onUnmounted(() => {
       <input type="text"
              :id="inputId"
              v-model="syncModelValue"
-             class="up-input focus:outline-none block w-full border border-r-0 rounded-l-lg bg-gray-50 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+             class="up-input focus:outline-none block w-full border border-r-0 rounded-l-lg bg-gray-50 dark:bg-gray-700 dark:focus:ring-primary-500 dark:focus:border-primary-500"
              :class="{
                     'p-4   sm:text-md': size==='lg',
                     'p-2.5 text-sm': size==='md',
                     'p-2   sm:text-xs': size==='sm',
                     'border-danger-500  text-danger-900  placeholder-danger-700  focus:ring-danger-500  focus:border-danger-500  dark:text-danger-500 dark:placeholder-danger-500  dark:border-danger-500 ': errors && errors.length > 0,
-                    'border-gray-300 text-gray-900 placeholder-gray-700 focus:ring-blue-500 focus:border-blue-500 dark:text-white   dark:placeholder-gray-400 dark:border-gray-600': !errors || errors.length === 0,
+                    'border-gray-300 text-gray-900 placeholder-gray-700 focus:ring-primary-500 focus:border-primary-500 dark:text-white   dark:placeholder-gray-400 dark:border-gray-600': !errors || errors.length === 0,
                     'cursor-not-allowed': disabled,
                }"
              :placeholder="placeholder"
@@ -415,7 +415,7 @@ onUnmounted(() => {
                         :class="{
                           'text-gray-900 dark:text-white                         ':  day.monthEdge === 0,
                           'text-gray-500 dark:text-gray-400                      ':  day.monthEdge !== 0,
-                          'bg-blue-700 dark:bg-blue-600 text-white               ':  day.selected,
+                          'bg-primary-700 dark:bg-primary-600 text-white               ':  day.selected,
                           'hover:bg-gray-100 dark:hover:bg-gray-600 text-gray-500': !day.selected,
                         }"
                         @click="onDateChange(day)"
@@ -431,7 +431,7 @@ onUnmounted(() => {
                     <span v-for="i in 12"
                           class="datepicker-cell text-gray-800 dark:text-white block flex-1 leading-9 border-0 rounded-lg cursor-pointer text-center font-semibold text-sm day prev"
                           :class="{
-                          'text-white bg-blue-700 dark:bg-blue-600  ': i-1 === displayMonthNum && displayYear === (modelValue?.getFullYear()??null),
+                          'text-white bg-primary-700 dark:bg-primary-600  ': i-1 === displayMonthNum && displayYear === (modelValue?.getFullYear()??null),
                           'hover:bg-gray-100 dark:hover:bg-gray-600': !(i-1 === displayMonthNum && displayYear === (modelValue?.getFullYear()??null)),
                         }"
                           @click.stop.prevent="onMonthCheck(i-1)"
@@ -447,7 +447,7 @@ onUnmounted(() => {
                     <span v-for="i in yearRange"
                           class="datepicker-cell text-gray-800 dark:text-white block flex-1 leading-9 border-0 rounded-lg cursor-pointer text-center font-semibold text-sm day prev "
                           :class="{
-                          'text-white bg-blue-700 dark:bg-blue-600  ': i === selectedYearTmp,
+                          'text-white bg-primary-700 dark:bg-primary-600  ': i === selectedYearTmp,
                           'hover:bg-gray-100 dark:hover:bg-gray-600': i !== selectedYearTmp,
                         }"
                           @click.stop.prevent="onYearCheck(i)"
@@ -463,7 +463,7 @@ onUnmounted(() => {
           <div class="datepicker-footer">
             <div class="datepicker-controls flex space-x-2 mt-2">
               <button type="button"
-                      class="button today-btn text-white bg-blue-700 dark:bg-blue-600 hover:bg-blue-800 dark:hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 text-center w-1/2"
+                      class="button today-btn text-white bg-primary-700 dark:bg-primary-600 hover:bg-primary-800 dark:hover:bg-primary-700 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2 text-center w-1/2"
                       style="display: none;">Today
               </button>
               <button type="button"

@@ -44,7 +44,7 @@ const syncModelValue = computed({
            class="block mb-2 text-sm font-medium"
            :class="{
       'text-gray-900 dark:text-white' : !errors,
-      'text-red-500'                  : errors,
+      'text-danger-500'                  : errors,
            }"
     >
       {{ label }}
@@ -54,9 +54,9 @@ const syncModelValue = computed({
               :disabled="disabled"
               :required="required"
               v-model="syncModelValue"
-              class="block p-2.5 w-full text-sm bg-gray-50 rounded-lg border focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              class="block p-2.5 w-full text-sm bg-gray-50 rounded-lg border focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:placeholder-gray-400 dark:focus:ring-primary-500 dark:focus:border-primary-500"
               :class="{
-                'text-red-500 border-red-500' : errors,
+                'text-danger-500 border-danger-500' : errors,
                 'text-gray-900 dark:text-white border-gray-300 dark:border-gray-600' : !errors,
               }"
               :placeholder="placeholder"

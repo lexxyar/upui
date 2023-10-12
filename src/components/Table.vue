@@ -33,7 +33,7 @@ const getHeaderValue = (head: any) => {
 }
 
 const onSortClick = (h: any) => {
-  if (!h.sortable) return;
+  if (!isSortable(h)) return;
   if (!props.sortedKey.key) {
     emit('onHeaderClick', {key: h.key, direction: 'asc'})
   } else {

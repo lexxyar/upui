@@ -108,7 +108,7 @@ const asArray = (arg: any): Array<any> => {
            :for="inputId"
            class="block mb-2 text-sm font-medium"
            :class="{
-                    'text-red-700  dark:text-red-500': errors && errors.length > 0,
+                    'text-danger-700  dark:text-danger-500': errors && errors.length > 0,
                     'text-gray-900 dark:text-white'  : !errors || errors.length === 0,
                }"
     >
@@ -122,12 +122,12 @@ const asArray = (arg: any): Array<any> => {
              v-model="syncModelValue"
              @keyup.esc="onKeyUpEsc"
              @keyup.enter="onKeyUpEnter"
-             class="up-input focus:outline-none block w-full border rounded-l-lg bg-gray-50 placeholder-gray-400 dark:bg-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:placeholder-gray-400"
+             class="up-input focus:outline-none block w-full border rounded-l-lg bg-gray-50 placeholder-gray-400 dark:bg-gray-700 dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:placeholder-gray-400"
              :class="{
                     'p-4   sm:text-md': size==='lg',
                     'p-2.5 text-sm': size==='md',
                     'p-2   sm:text-xs': size==='sm',
-                    'border-red-500  text-red-900  placeholder-red-700  focus:ring-red-500  focus:border-red-500  dark:text-red-500 dark:placeholder-red-500  dark:border-red-500 ': errors && errors.length > 0,
+                    'border-danger-500  text-danger-900  placeholder-danger-700  focus:ring-danger-500  focus:border-danger-500  dark:text-danger-500 dark:placeholder-danger-500  dark:border-danger-500 ': errors && errors.length > 0,
                     'border-gray-300 text-gray-900 placeholder-gray-700 focus:ring-blue-500 focus:border-blue-500 dark:text-white   dark:placeholder-gray-400 dark:border-gray-600': !errors || errors.length === 0,
                     'rounded-r-lg': !clearable && !selfFormed,
                     'border-r-0': clearable || selfFormed,

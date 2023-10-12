@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {computed} from 'vue'
 
-type TStyle = 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning'
+type TStyle = 'primary' | 'secondary' | 'danger' | 'info' | 'success' | 'warning'
 type TSize = 'lg' | 'md' | 'sm' | 'xl'
 const props = withDefaults(defineProps<{
   total?: number,
@@ -21,24 +21,6 @@ const nPercentage = computed((): number => {
   return Number(perc.toFixed())
 })
 
-const stylToInternal = computed(() => {
-  switch (props.styl) {
-    case('primary'):
-      return 'blue'
-    case('secondary'):
-      return 'dark'
-    case('error'):
-      return 'red'
-    case('success'):
-      return 'green'
-    case('warning'):
-      return 'yellow'
-    case('info'):
-      return 'purple'
-    default:
-      return 'blue'
-  }
-})
 </script>
 
 <template>
@@ -57,12 +39,12 @@ const stylToInternal = computed(() => {
             'h-2.5': size === 'md',
             'h-4  ': size === 'lg',
             'h-6  ': size === 'xl',
-            'bg-gray-600   dark:bg-gray-300  ': stylToInternal === 'dark',
-            'bg-blue-600                     ': stylToInternal === 'blue',
-            'bg-red-600    dark:bg-red-500   ': stylToInternal === 'red',
-            'bg-green-600  dark:bg-green-500 ': stylToInternal === 'green',
-            'bg-yellow-400                   ': stylToInternal === 'yellow',
-            'bg-purple-600 dark:bg-purple-500': stylToInternal === 'purple',
+            'bg-secondary-600   dark:bg-secondary-300  ': styl === 'secondary',
+            'bg-primary-600                     ': styl === 'primary',
+            'bg-danger-600    dark:bg-danger-500   ': styl === 'danger',
+            'bg-success-600  dark:bg-success-500 ': styl === 'success',
+            'bg-warning-400                   ': styl === 'warning',
+            'bg-info-600 dark:bg-info-500': styl === 'info',
              }"
          :style="`width: ${nPercentage}%;`"
     >

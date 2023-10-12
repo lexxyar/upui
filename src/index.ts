@@ -19,10 +19,8 @@ import Select from "./components/Select.vue"
 import Switch from "./components/Switch.vue"
 import Table from "./components/Table.vue"
 import TableRow from "./components/TableRow.vue"
-import Text from "./components/Text.vue"
 import TextArea from "./components/TextArea.vue"
 import ThemeToggle from "./components/ThemeToggle.vue"
-import Tile from "./components/Tile.vue"
 import LaunchTile from "./components/Tile/LaunchTile.vue"
 import Toast from "./components/Toast.vue"
 
@@ -47,10 +45,8 @@ export {
     Switch,
     Table,
     TableRow,
-    Text,
     TextArea,
     ThemeToggle,
-    Tile,
     LaunchTile,
     Toast,
 }

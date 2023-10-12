@@ -6,8 +6,9 @@ import {
   LaunchTile, MenuButton
 } from '@lexxsoft/upui'
 import {ref} from "vue";
+import Pagination from "./components/Pagination.vue";
 
-const btnStyles = ['primary', 'secondary', 'error', 'warning', 'success', 'info']
+const btnStyles = ['primary', 'secondary', 'danger', 'warning', 'success', 'info']
 const btnShapes = ['solid', 'outline', 'pill', 'free']
 const checkboxValue = ref(true)
 const errorText = 'Some error text'
@@ -56,6 +57,7 @@ const textareaValue = ref('Text area value')
       </MenuButton>
       <MenuButton label="Dropdown menu" href="#dropdownmenu"></MenuButton>
       <MenuButton label="Header" href="#header"></MenuButton>
+      <MenuButton label="Pagination" href="#pagination"></MenuButton>
       <MenuButton label="Progress" href="#progress"></MenuButton>
       <MenuButton label="Table" href="#table"></MenuButton>
       <MenuButton label="Tile" href="#tile"></MenuButton>
@@ -82,6 +84,8 @@ const textareaValue = ref('Text area value')
 
       <section id="buttons">
         <Header size="1">Buttons</Header>
+        + :strongBorder
+        'primary' | 'secondary' | 'danger' | 'success' | 'warning' | 'info'
         <div class="mt-3">
           <Header size="5">:styl</Header>
           <div class="flex gap-4">
@@ -760,6 +764,18 @@ const textareaValue = ref('Text area value')
           <div class="flex gap-4">
             <span>:duration</span>
             <span>:message</span>
+          </div>
+        </div>
+
+      </section>
+
+      <section id="pagination">
+        <Header size="1">Pagination</Header>
+
+        <div class="mt-3">
+          <Header size="5"></Header>
+          <div class="w-full">
+            <Pagination total="1000" to="10" from="1" current-page="50"/>
           </div>
         </div>
 
