@@ -642,7 +642,7 @@ const textareaValue = ref('Text area value')
         <div class="mt-3">
           <Header size="5"></Header>
           <div class="w-full">
-            <Pagination total="1000" to="10" from="1" current-page="50"/>
+            <Pagination total="1000" current-page="1"/>
           </div>
         </div>
 

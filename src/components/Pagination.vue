@@ -7,8 +7,6 @@ const emit = defineEmits<{
 }>()
 
 const props = withDefaults(defineProps<{
-  from: number,
-  to: number,
   total: number,
   currentPage?: number,
   perPage?: number,
@@ -37,6 +35,14 @@ const props = withDefaults(defineProps<{
 //   {url: "http://localhost:8088?page=3", label: "3", active: false},
 //   {url: "http://localhost:8088?page=2", label: "Next &raquo;", active: false}
 // ]
+
+const from = computed(() => {
+  return (props.currentPage - 1) * props.perPage + 1
+})
+const to = computed(() => {
+  const newVal = props.currentPage * props.perPage
+  return newVal <= props.total ? newVal : props.total
+})
 
 const links = computed(() => {
   const build = (pageNum: any = null) => {
