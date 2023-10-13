@@ -18,7 +18,7 @@ withDefaults(defineProps<{
         <slot />
     </h2>
 
-    <h3 v-if="size==='3'" class="text-3xl font-bold dark:text-white">
+    <h3 v-if="size==='3'" v-bind="$attrs" class="text-3xl font-bold dark:text-white">
         <slot />
     </h3>
 
