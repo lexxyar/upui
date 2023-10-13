@@ -1,37 +1,33 @@
 <script setup lang="ts">
+import {computed} from "vue";
+
 type TSize = '1' | '2' | '3' | '4' | '5' | '6'
 
-withDefaults(defineProps<{
-    size?: TSize,
+const props = withDefaults(defineProps<{
+  size?: TSize,
 }>(), {
-    size: '3'
+  size: '3'
 })
+
+const tagName = computed(() => {
+  return `h${props.size}`
+})
+
 </script>
 
 <template>
 
-    <h1 v-if="size==='1'" class="text-5xl font-extrabold dark:text-white">
-        <slot />
-    </h1>
-
-    <h2 v-if="size==='2'" class="text-4xl font-bold dark:text-white">
-        <slot />
-    </h2>
-
-    <h3 v-if="size==='3'" v-bind="$attrs" class="text-3xl font-bold dark:text-white">
-        <slot />
-    </h3>
-
-    <h4 v-if="size==='4'" class="text-2xl font-bold dark:text-white">
-        <slot />
-    </h4>
-
-    <h5 v-if="size==='5'" class="text-xl font-bold dark:text-white">
-        <slot />
-    </h5>
-
-    <h6 v-if="size==='6'" class="text-lg font-bold dark:text-white">
-        <slot />
-    </h6>
+  <component :is="tagName" class="dark:text-white" v-bind="$attrs"
+             :class="{
+      'text-5xl font-extrabold': size==='1',
+      'text-4xl font-bold': size==='2',
+      'text-3xl font-bold': size==='3',
+      'text-2xl font-bold': size==='4',
+      'text-xl font-bold': size==='5',
+      'text-lg font-bold': size==='6',
+    }"
+  >
+    <slot/>
+  </component>
 
 </template>
