@@ -17,7 +17,7 @@ const tagName = computed(() => {
 
 <template>
 
-  <component :is="tagName" class="dark:text-white" v-bind="$attrs"
+  <component :is="tagName" class="dark:text-white" v-bind="$props"
              :class="{
       'text-5xl font-extrabold': size==='1',
       'text-4xl font-bold': size==='2',
