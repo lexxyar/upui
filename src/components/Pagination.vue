@@ -139,8 +139,7 @@ const changePageHandler = (pageNumber: string) => {
 
           <!-- first button -->
           <li v-if="index === 0">
-            <Button :href="oLink"
-                    :disabled="oLink==null"
+            <Button :disabled="oLink.label==null"
                     shape="outline"
                     size="sm"
                     strong-border="right"
@@ -158,8 +157,7 @@ const changePageHandler = (pageNumber: string) => {
 
           <!-- Last button -->
           <li v-else-if="index === links.length-1">
-            <Button :href="oLink"
-                    :disabled="oLink==null"
+            <Button :disabled="oLink.label==null"
                     shape="outline"
                     size="sm"
                     strong-border="left"
