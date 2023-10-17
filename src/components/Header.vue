@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import {computed} from "vue";
 
+defineOptions({
+  inheritAttrs: true,
+})
+
 type TSize = '1' | '2' | '3' | '4' | '5' | '6'
 
 const props = withDefaults(defineProps<{
