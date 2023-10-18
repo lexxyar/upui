@@ -26,13 +26,12 @@ const style = computed((): TStyl => {
 </script>
 
 <template>
-  <TransitionGroup
-      tag="div"
+  <Transition
       enter-from-class="translate-x-full opacity-0"
       enter-active-class="duration-500"
       leave-active-class="duration-500"
       leave-to-class="translate-x-full opacity-0"
-      class="fixed right-4 top-4 z-50 w-full max-w-xs space-y-4">
+  >
     <div
         class="border border-gray-400 dark:border-gray-600 flex items-center p-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
         role="alert">
@@ -98,5 +97,5 @@ const style = computed((): TStyl => {
         </svg>
       </button>
     </div>
-  </TransitionGroup>
+  </Transition>
 </template>
