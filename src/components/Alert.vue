@@ -18,7 +18,7 @@ withDefaults(defineProps<{
         'text-secondary-800   border-secondary-300   bg-secondary-50   dark:text-secondary-300   dark:border-secondary-600   ': styl==='none',
          }"
        role="alert">
-    <div>
+    <div class="w-full h-auto">
       <slot/>
     </div>
   </div>
