@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {computed, ref} from 'vue'
-import InpeutErrors from "./inner/InpeutErrors.vue";
+import InpeutErrors from "./inner/InputErrors.vue";
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: boolean): void,

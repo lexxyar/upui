@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {computed, ref, useSlots} from 'vue'
-import InpeutErrors from "./inner/InpeutErrors.vue";
+import InpeutErrors from "./inner/InputErrors.vue";
 
 type TSizes = 'lg' | 'sm' | 'md'
 type TType = 'text' | 'email' | 'password'

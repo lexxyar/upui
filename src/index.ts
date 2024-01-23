@@ -17,6 +17,7 @@ import MenuItem from "./components/MenuItem.vue"
 import Pagination from "./components/Pagination.vue"
 import Progress from "./components/Progress.vue"
 import Select from "./components/Select.vue"
+import Spinner from "./components/Spinner.vue"
 import Switch from "./components/Switch.vue"
 import Table from "./components/Table.vue"
 import TableRow from "./components/TableRow.vue"
@@ -44,6 +45,7 @@ export {
     Pagination,
     Progress,
     Select,
+    Spinner,
     Switch,
     Table,
     TableRow,

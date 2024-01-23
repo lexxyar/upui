@@ -2,7 +2,7 @@
 import {computed, onMounted, onUnmounted, Ref, ref} from 'vue'
 // @ts-ignore
 import dateFormat from 'dateformat'
-import InpeutErrors from "./inner/InpeutErrors.vue";
+import InpeutErrors from "./inner/InputErrors.vue";
 
 type TSizes = 'lg' | 'sm' | 'md'
 type TDisplayState = 'days' | 'months' | 'years'

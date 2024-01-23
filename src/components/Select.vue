@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {computed} from 'vue'
-import InpeutErrors from "./inner/InpeutErrors.vue";
+import InpeutErrors from "./inner/InputErrors.vue";
 
 type TSizes = 'sm' | 'md' | 'lg'
 const emit = defineEmits<{

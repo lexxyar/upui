@@ -2,7 +2,7 @@
 
 import {computed} from "vue";
 import FileTile from "./FileTile.vue";
-import InpeutErrors from "./inner/InpeutErrors.vue";
+import InpeutErrors from "./inner/InputErrors.vue";
 
 const emit = defineEmits<{
     (e: 'change', value: any): void,
