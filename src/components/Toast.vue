@@ -70,7 +70,12 @@ setTimeout(() => isActive.value = true, 100)
     </button>
 
     <div v-if="autoclose"
-         class="block absolute left-0 bottom-0 h-1 bg-danger-700 dark:bg-danger-600 ease-linear loader"
+         class="block absolute left-0 bottom-0 h-1 ease-linear loader"
+         :class="{
+            'bg-danger-700 dark:bg-danger-600': type === 'error',
+            'bg-warning-700 dark:bg-warning-600': type === 'warning',
+            'bg-success-700 dark:bg-success-600': type === 'success',
+         }"
          :style="`animation-duration: ${syncDuration}ms;`"
     ></div>
 
