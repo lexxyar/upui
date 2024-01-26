@@ -5,6 +5,7 @@ import Button from "./components/Button.vue"
 import Card from "./components/Card.vue"
 import Checkbox from "./components/Checkbox.vue"
 import DatePicker from "./components/DatePicker.vue"
+import Drawer from "./components/Drawer.vue"
 import DropdownItem from "./components/DropdownItem.vue"
 import DropdownMenu from "./components/DropdownMenu.vue"
 import DropdownSeparator from "./components/DropdownSeparator.vue"
@@ -14,6 +15,7 @@ import Header from "./components/Header.vue"
 import InputText from "./components/InputText.vue"
 import MenuButton from "./components/MenuButton.vue"
 import MenuItem from "./components/MenuItem.vue"
+import Overlay from "./components/Overlay.vue"
 import Pagination from "./components/Pagination.vue"
 import Progress from "./components/Progress.vue"
 import Select from "./components/Select.vue"
@@ -23,7 +25,7 @@ import Table from "./components/Table.vue"
 import TableRow from "./components/TableRow.vue"
 import TextArea from "./components/TextArea.vue"
 import ThemeToggle from "./components/ThemeToggle.vue"
-import LaunchTile from "./components/Tile/LaunchTile.vue"
+import {LaunchTile} from "./components/Tile"
 import Toast from "./components/Toast.vue"
 
 export {
@@ -33,6 +35,7 @@ export {
     Card,
     Checkbox,
     DatePicker,
+    Drawer,
     DropdownItem,
     DropdownMenu,
     DropdownSeparator,
@@ -42,6 +45,7 @@ export {
     InputText,
     MenuButton,
     MenuItem,
+    Overlay,
     Pagination,
     Progress,
     Select,

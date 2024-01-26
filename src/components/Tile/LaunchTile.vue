@@ -11,6 +11,7 @@ withDefaults(defineProps<{
 </script>
 
 <template>
+
   <!-- Tile -->
   <div
       class="launch-tile hover:cursor-pointer hover:drop-shadow-lg dark:hover:border-gray-600 flex flex-col flex-nowrap overflow-hidden p-3.5 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 w-48 h-48 dark:text-gray-200 text-gray-800">
@@ -46,6 +47,7 @@ withDefaults(defineProps<{
     </div>
   </div>
   <!-- /Tile -->
+
 </template>
 
 <style scoped>

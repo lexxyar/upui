@@ -39,12 +39,12 @@ const nPercentage = computed((): number => {
             'h-2.5': size === 'md',
             'h-4  ': size === 'lg',
             'h-6  ': size === 'xl',
-            'bg-secondary-600   dark:bg-secondary-300  ': styl === 'secondary',
-            'bg-primary-600                     ': styl === 'primary',
-            'bg-danger-600    dark:bg-danger-500   ': styl === 'danger',
-            'bg-success-600  dark:bg-success-500 ': styl === 'success',
-            'bg-warning-400                   ': styl === 'warning',
-            'bg-info-600 dark:bg-info-500': styl === 'info',
+            'text-secondary-100 bg-secondary-600   dark:bg-secondary-300  ': styl === 'secondary',
+            'text-primary-100 bg-primary-600                     ': styl === 'primary',
+            'text-danger-100 bg-danger-600    dark:bg-danger-500   ': styl === 'danger',
+            'text-success-100 bg-success-600  dark:bg-success-500 ': styl === 'success',
+            'text-warning-900 bg-warning-400                   ': styl === 'warning',
+            'text-info-100 bg-info-600 dark:bg-info-500': styl === 'info',
              }"
          :style="`width: ${nPercentage}%;`"
     >

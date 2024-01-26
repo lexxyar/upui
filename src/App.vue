@@ -9,6 +9,7 @@ import {ref} from "vue";
 
 const btnStyles = ['primary', 'secondary', 'danger', 'warning', 'success', 'info']
 const btnShapes = ['solid', 'outline', 'pill', 'free']
+const toastTypes = ['default', 'error', 'success', 'warning']
 const checkboxValue = ref(true)
 const errorText = 'Some error text'
 const currentDate = ref(new Date())
@@ -16,6 +17,7 @@ const showDdMenu = ref(false)
 const showDdMenuTl = ref(false)
 const showDdMenuTR = ref(false)
 const switchValue = ref(false)
+const emptyString = ref('')
 const inputText = ref('Text')
 const selectList = [
   {id: '1', value: 'Laravel'},
@@ -127,6 +129,7 @@ const textareaValue = ref('Text area value')
         </div>
       </section>
 
+      <!-- Cards -->
       <section id="cards">
         <Header size="1">Cards</Header>
         <div class="mt-3">
@@ -225,7 +228,9 @@ const textareaValue = ref('Text area value')
         </div>
 
       </section>
+      <!-- /Cards -->
 
+      <!-- Form -->
       <section id="form">
         <Header size="1">Form</Header>
 
@@ -358,6 +363,16 @@ const textareaValue = ref('Text area value')
           </div>
 
           <div class="mt-3">
+            <Header size="5">:placeholder</Header>
+            <div class="flex gap-4">
+              <InputText v-model="emptyString"
+                         label="InputText placeholder"
+                         placeholder="Placeholder text"
+              />
+            </div>
+          </div>
+
+          <div class="mt-3">
             <Header size="5">:size</Header>
             <div class="flex gap-4">
               <InputText v-model="inputText"
@@ -399,7 +414,7 @@ const textareaValue = ref('Text area value')
             <Header size="5">:selfFormed="true"</Header>
             <div class="flex gap-4">
               <InputText v-model="inputText"
-                         label="InputText with clear button"
+                         label="Editable state InputText"
                          :selfFormed="true"
               />
             </div>
@@ -409,7 +424,6 @@ const textareaValue = ref('Text area value')
             <Header size="5">Other options</Header>
             <div class="flex gap-4">
               <span>:required</span>
-              <span>:placeholder</span>
               <span>:disabled</span>
               <span>:type ['text' | 'email' | 'password']</span>
             </div>
@@ -577,7 +591,9 @@ const textareaValue = ref('Text area value')
         </div>
 
       </section>
+      <!-- Form -->
 
+      <!-- Dropdown menu -->
       <section id="dropdownmenu">
         <Header size="1">Dropdown Menu</Header>
         <div class="mt-3">
@@ -623,7 +639,9 @@ const textareaValue = ref('Text area value')
         </div>
 
       </section>
+      <!-- /Dropdown menu -->
 
+      <!-- Header -->
       <section id="header">
         <Header size="1">Header</Header>
         <div class="mt-3">
@@ -634,19 +652,23 @@ const textareaValue = ref('Text area value')
           </div>
         </div>
       </section>
+      <!-- /Header -->
 
+      <!-- Pagination -->
       <section id="pagination">
         <Header size="1">Pagination</Header>
 
         <div class="mt-3">
           <Header size="5"></Header>
           <div class="w-full">
-            <Pagination total="1000" current-page="1"/>
+            <Pagination :total="1000" :current-page="3"/>
           </div>
         </div>
 
       </section>
+      <!-- /Pagination -->
 
+      <!-- Progress -->
       <section id="progress">
         <Header size="1">Progress</Header>
         <div class="mt-3">
@@ -684,6 +706,7 @@ const textareaValue = ref('Text area value')
           </div>
         </div>
       </section>
+      <!-- Progress -->
 
       <section id="table">
         <Header size="1">Table</Header>
@@ -755,17 +778,18 @@ const textareaValue = ref('Text area value')
 
       </section>
 
+      <!-- Toast -->
       <section id="toast">
         <Header size="1">Toast</Header>
 
         <div class="mt-3">
           <Header size="5">:styl</Header>
-          'error' | 'success' | 'warning' | 'info' | 'danger'
+          'default' | 'error' | 'success' | 'warning'
           <div class="flex gap-4">
-            <template v-for="styl in btnStyles" :key="styl">
-              <template v-if="!['primary','secondary'].includes(styl)">
-                <Toast :message="`${styl} message`" :styl="styl"/>
-              </template>
+            <template v-for="styl in toastTypes" :key="styl">
+              <Toast :type="styl">
+                {{ `${styl} message` }}
+              </Toast>
             </template>
           </div>
         </div>
@@ -779,7 +803,7 @@ const textareaValue = ref('Text area value')
         </div>
 
       </section>
-
+      <!-- /Toast -->
 
     </div>
   </div>

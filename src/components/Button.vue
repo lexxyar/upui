@@ -72,6 +72,7 @@ const commonStyles = computed(() => {
         'text-white    bg-info-700 hover:bg-info-800 focus:ring-info-300 dark:bg-info-600 dark:hover:bg-info-700 dark:focus:ring-info-900                                        ': styl==='info',
         ...commonStyles
             }"
+            :disabled="disabled"
             v-bind="$attrs"
     >
       <slot/>
@@ -93,6 +94,7 @@ const commonStyles = computed(() => {
        'focus:outline-none text-info-700 hover:text-white dark:hover:text-white border-info-700 hover:bg-info-800 focus:ring-info-300 font-medium dark:border-info-400 dark:text-info-400 dark:hover:bg-info-500 dark:focus:ring-info-900': styl==='info',
        ...commonStyles
            }"
+            :disabled="disabled"
     >
       <slot/>
     </button>
@@ -111,6 +113,7 @@ const commonStyles = computed(() => {
         'text-white    bg-info-700 hover:bg-info-800 focus:ring-info-300 text-center dark:bg-info-600 dark:hover:bg-info-700 dark:focus:ring-info-900                                                               ': styl==='info',
         ...commonStyles
             }"
+            :disabled="disabled"
     >
       <slot/>
     </button>
@@ -129,6 +132,7 @@ const commonStyles = computed(() => {
        'focus:outline-none text-info-700 hover:text-info-800 focus:ring-info-300 font-medium dark:border-info-400 dark:text-info-400 dark:hover:text-info-500 dark:focus:ring-info-900                  ': styl==='info',
        ...commonStyles
            }"
+            :disabled="disabled"
     >
       <slot/>
     </button>
