@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import Overlay from "./Overlay.vue";
 import {ref} from "vue";
-import {Header} from "../../dist";
+import Header from "./Header.vue";
 
 const emit = defineEmits<{
   (e: 'close'): void
 }>()
 
 withDefaults(defineProps<{
-  closeText?:string,
-}>(),{
-  closeText:'Close',
+  closeText?: string,
+}>(), {
+  closeText: 'Close',
 })
 
 const show = ref(false)
@@ -36,9 +36,9 @@ setTimeout(() => show.value = true, 0)
     >
       <div class="min-h-10">
         <Header size="5">
-<!--        <h5 class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400">-->
+          <!--        <h5 class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400">-->
           <slot name="title"/>
-<!--        </h5>-->
+          <!--        </h5>-->
         </Header>
 
         <button type="button" data-drawer-hide="drawer-right-example" aria-controls="drawer-right-example"
@@ -50,7 +50,7 @@ setTimeout(() => show.value = true, 0)
                class="w-5 h-5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
           </svg>
-          <span class="sr-only">{{closeText}}</span>
+          <span class="sr-only">{{ closeText }}</span>
         </button>
       </div>
 
