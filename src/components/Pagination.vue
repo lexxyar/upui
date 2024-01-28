@@ -11,7 +11,6 @@ const props = withDefaults(defineProps<{
   currentPage?: number,
   perPage?: number,
   showingText?: string,
-  toText?: string,
   ofText?: string,
   resultsText?: string,
   nextText?: string,
@@ -19,7 +18,6 @@ const props = withDefaults(defineProps<{
   size?: TSize,
 }>(), {
   showingText: 'Showing',
-  toText: 'to',
   ofText: 'of',
   resultsText: 'results',
   nextText: 'Next',
@@ -124,7 +122,7 @@ const curentPageAttributes = (i: number) => {
     <div class="text-sm text-secondary-700 dark:text-secondary-400">
       {{ showingText }}
       <span class="font-semibold text-secondary-900 dark:text-white">{{ from }}</span
-      > {{ toText }} <span
+      > - <span
         class="font-semibold text-secondary-900 dark:text-white">{{ to }}</span
     > {{ ofText }} <span
         class="font-semibold text-secondary-900 dark:text-white">{{ total }}</span

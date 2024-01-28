@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Overlay from "./Overlay.vue";
 import {ref} from "vue";
+import {Header} from "../../dist";
 
 const emit = defineEmits<{
   (e: 'close'): void
@@ -34,9 +35,11 @@ setTimeout(() => show.value = true, 0)
 
     >
       <div class="min-h-10">
-        <h5 class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400">
+        <Header size="5">
+<!--        <h5 class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400">-->
           <slot name="title"/>
-        </h5>
+<!--        </h5>-->
+        </Header>
 
         <button type="button" data-drawer-hide="drawer-right-example" aria-controls="drawer-right-example"
                 class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white"

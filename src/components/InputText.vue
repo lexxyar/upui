@@ -143,7 +143,7 @@ const asArray = (arg: any): Array<any> => {
       <template v-if="(clearable || selfFormed) && !disabled">
         <template v-if="clearable">
             <span
-                class="up-input-button cursor-pointer inline-flex items-center px-3 text-sm text-gray-900 border border-l-0 border-gray-300 rounded-r-md bg-gray-50 dark:bg-gray-700 dark:text-gray-400 dark:border-gray-600"
+                class="up-input-button cursor-pointer inline-flex items-center px-3 text-sm text-gray-900 border-y border-r border-gray-300 rounded-r-md bg-gray-50 dark:bg-gray-700 dark:text-gray-400 dark:border-gray-600"
                 @click="onClear"
             >
     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
