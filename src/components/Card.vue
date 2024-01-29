@@ -19,11 +19,11 @@ withDefaults(defineProps<{
     'w-full': size=='full',
   }"
   >
-    <div class="w-full px-3 pt-3 pb-5">
-      <template v-if="!!$slots.header">
+    <template v-if="!!$slots.header">
+      <div class="w-full px-3 pt-3 pb-5">
         <slot name="header"></slot>
-      </template>
-    </div>
+      </div>
+    </template>
 
     <slot/>
   </div>
