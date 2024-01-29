@@ -41,6 +41,7 @@ const onCheckboxClick = (e: Event) => {
   <div>
     <div class="flex items-center" @click.stop="onCheckboxClick">
       <input :id="inputId"
+             :name="inputId"
              type="checkbox"
              :key="updateKey"
              :disabled="disabled"
