@@ -48,54 +48,43 @@ const links = computed(() => {
   }
 
   const currentPage: number = Number(props.currentPage)
-  const aItems = []
-  aItems.push(build())
-  if (pageCount.value > 10) {
-    for (let i = 1; i <= pageCount.value; i++) {
+  const aItems: any[] = []
 
-      // First or last page
-      if (i === 1 || i === pageCount.value) {
-        aItems.push(build(i))
-      }
+  let current = currentPage,
+      last = pageCount.value,
+      delta = 2,
+      left = current - delta,
+      right = current + delta + 1,
+      range = [],
+      rangeWithDots = [],
+      l;
 
-      // if difference from current page between first or last page more than 9
-      else if (currentPage > 9 || currentPage < pageCount.value - 9) {
-        // If current page inside interval [-3; +3]
-        if (i >= currentPage - 3 && i <= currentPage + 3) {
-          aItems.push(build(i))
-        }
-        // If current page outside interval [-3; +3]
-        else {
-          // If current page lt 9 and iteration lt 9
-          if (currentPage < 9 && i < 9) {
-            aItems.push(build(i))
-          }
-          // if current page inside last 9 pages and iteration inside last 9 pages
-          else if (currentPage > pageCount.value - 9 && i > pageCount.value - 9) {
-            aItems.push(build(i))
-          }
-        }
-      }
-    }
-  } else {
-    for (let i = 1; i <= pageCount.value; i++) {
-      aItems.push(build(i))
+  for (let i = 1; i <= last; i++) {
+    if (i == 1 || i == last || i >= left && i < right) {
+      range.push(i);
     }
   }
+
+  for (let i of range) {
+    if (l) {
+      if (i - l === 2) {
+        rangeWithDots.push(l + 1);
+      } else if (i - l !== 1) {
+        rangeWithDots.push('...');
+      }
+    }
+    rangeWithDots.push(i);
+    l = i;
+  }
+
+  aItems.push(build())
+  rangeWithDots.map((value: number | string) => {
+    aItems.push(build(value))
+  })
   aItems.push(build())
 
   return aItems
 })
-
-const shouldSpace = (currentNum: string): boolean => {
-  if (currentNum === '1') return false
-
-  const nFindIndex = links.value.findIndex(e => e.label === currentNum.toString())
-  if (nFindIndex > 1) {
-    return Number(links.value[nFindIndex].label) - Number(links.value[nFindIndex - 1].label) !== 1
-  }
-  return false
-}
 
 const changePageHandler = (pageNumber: string) => {
   if (pageNumber === '-1' && props.currentPage === 1) return;
@@ -140,7 +129,7 @@ const curentPageAttributes = (i: number) => {
 
         <template v-for="(oLink, index) in links" :key="index">
 
-          <!-- first button -->
+          <!-- First button -->
           <li v-if="index === 0">
             <a href="#"
                class="flex items-center justify-center px-3 ms-0 leading-tight text-secondary-500 bg-white border border-e-0 border-secondary-300 rounded-s-lg hover:bg-secondary-100 hover:text-secondary-700 dark:bg-secondary-800 dark:border-secondary-700 dark:text-secondary-400 dark:hover:bg-secondary-700 dark:hover:text-white"
@@ -158,6 +147,7 @@ const curentPageAttributes = (i: number) => {
               </svg>
             </a>
           </li>
+          <!-- /First button -->
 
           <!-- Last button -->
           <li v-else-if="index === links.length-1">
@@ -176,9 +166,10 @@ const curentPageAttributes = (i: number) => {
               </svg>
             </a>
           </li>
+          <!-- /Last button -->
 
           <template v-else>
-            <li v-if="shouldSpace(oLink.label)">
+            <li v-if="oLink.label === '...'">
               <a href="#"
                  class="flex items-center justify-center px-3 leading-tight text-secondary-500 bg-white border border-secondary-300 hover:bg-secondary-100 hover:text-secondary-700 dark:bg-secondary-800 dark:border-secondary-700 dark:text-secondary-400 dark:hover:bg-secondary-700 dark:hover:text-white"
                  :class="{
@@ -186,11 +177,11 @@ const curentPageAttributes = (i: number) => {
                     'px-4 h-10 text-base': size === 'md',
                   }"
               >
-                ...
+                {{ oLink.label }}
               </a>
             </li>
 
-            <li>
+            <li v-else>
               <a href="#"
                  v-bind="curentPageAttributes(+oLink.label)"
                  class="flex items-center justify-center leading-tight border"
