@@ -3,7 +3,7 @@ import {
   Button, Header, Badge, Card, Checkbox, DatePicker,
   DropdownMenu, DropdownItem, DropdownSeparator, Toast,
   InputText, Progress, Select, Switch, TextArea, Table,
-  LaunchTile, MenuButton, Pagination
+  LaunchTile, MenuButton, Pagination, Indicator
 } from '@lexxsoft/upui'
 import {ref} from "vue";
 
@@ -63,9 +63,11 @@ const textareaValue = ref('Text area value')
       <MenuButton label="Table" href="#table"></MenuButton>
       <MenuButton label="Tile" href="#tile"></MenuButton>
       <MenuButton label="Toast" href="#toast"></MenuButton>
+      <MenuButton label="Indicators" href="#indicators"></MenuButton>
     </aside>
     <div class="main-content ml-80 p-6">
 
+      <!-- Badges -->
       <section id="badges">
         <Header size="1">Bagdes</Header>
         <div class="mt-3">
@@ -82,7 +84,9 @@ const textareaValue = ref('Text area value')
           </div>
         </div>
       </section>
+      <!-- /Badges -->
 
+      <!-- Buttons -->
       <section id="buttons">
         <Header size="1">Buttons</Header>
         + :strongBorder
@@ -128,6 +132,7 @@ const textareaValue = ref('Text area value')
           </div>
         </div>
       </section>
+      <!-- Buttons -->
 
       <!-- Cards -->
       <section id="cards">
@@ -804,6 +809,31 @@ const textareaValue = ref('Text area value')
 
       </section>
       <!-- /Toast -->
+
+      <!-- Indicators -->
+      <section id="indicators">
+        <Header size="1">Indicators</Header>
+
+        <div class="mt-3">
+          <Header size="5">:styl</Header>
+          'primary' | 'secondary' | 'danger' | 'success' | 'warning' | 'info'
+          <div class="flex gap-4">
+            <Indicator v-for="styl in btnStyles" :key="styl" :styl="styl"></Indicator>
+          </div>
+        </div>
+
+        <div class="mt-3">
+          <Header size="5">:label</Header>
+          <div class="flex gap-4">
+            <Indicator styl="success">Success</Indicator>
+            <Indicator styl="danger">Danger</Indicator>
+            <Indicator styl="primary">Primary</Indicator>
+            <Indicator styl="warning">Warning</Indicator>
+          </div>
+        </div>
+
+      </section>
+      <!-- /Indicators -->
 
     </div>
   </div>

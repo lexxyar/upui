@@ -12,6 +12,7 @@ import DropdownSeparator from "./components/DropdownSeparator.vue"
 import FileDropzone from "./components/FileDropzone.vue"
 import FileTile from "./components/FileTile.vue"
 import Header from "./components/Header.vue"
+import Indicator from "./components/Indicator.vue";
 import InputText from "./components/InputText.vue"
 import MenuButton from "./components/MenuButton.vue"
 import MenuItem from "./components/MenuItem.vue"
@@ -42,6 +43,7 @@ export {
     FileDropzone,
     FileTile,
     Header,
+    Indicator,
     InputText,
     MenuButton,
     MenuItem,
