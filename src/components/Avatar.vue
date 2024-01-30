@@ -10,23 +10,23 @@ const emit = defineEmits<{
 const props = withDefaults(defineProps<{
   size?: TSize,
   src?: string,
-  showDeleteButton?: boolean,
   letters?: string,
 }>(), {
   size: 'md',
   src: '',
-  showDeleteButton: false,
   letters: '',
 })
 
 const avatarLetters = computed(() => props.letters.toUpperCase())
 const propses = getCurrentInstance()?.vnode.props ?? {}
 
+console.log(propses)
 const onDeleteAvatarClick = () => {
   emit('delete')
 }
 
 const hasOnClickBinding = computed((): boolean => (Object.keys(propses).includes('onClick') && typeof propses.onClick === 'function'))
+const hasOnDeleteBinding = computed((): boolean => (Object.keys(propses).includes('onDelete') && typeof propses.onClick === 'function'))
 
 </script>
 
@@ -79,7 +79,7 @@ const hasOnClickBinding = computed((): boolean => (Object.keys(propses).includes
     <!-- /Icon -->
 
     <!-- Delete button -->
-    <div v-if="src !== '' && showDeleteButton && size !== 'sm'"
+    <div v-if="src !== '' && hasOnDeleteBinding && size !== 'sm'"
          @click.stop="onDeleteAvatarClick"
          class="absolute flex justify-center items-center bottom-0 right-0 bg-danger-400 hover:bg-danger-500 border dark:border-gray-800 border-white rounded-full text-white"
          :class="{
