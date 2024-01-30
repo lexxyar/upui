@@ -20,7 +20,6 @@ const props = withDefaults(defineProps<{
 const avatarLetters = computed(() => props.letters.toUpperCase())
 const propses = getCurrentInstance()?.vnode.props ?? {}
 
-console.log(propses)
 const onDeleteAvatarClick = () => {
   emit('delete')
 }
@@ -44,7 +43,7 @@ const hasOnDeleteBinding = computed((): boolean => (Object.keys(propses).include
   >
 
     <!-- Image -->
-    <img v-if="src !== ''"
+    <img v-if="!!src"
          :src="src"
          alt="avatar"
          class="rounded-full"
