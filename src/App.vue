@@ -3,13 +3,14 @@ import {
   Button, Header, Badge, Card, Checkbox, DatePicker,
   DropdownMenu, DropdownItem, DropdownSeparator, Toast,
   InputText, Progress, Select, Switch, TextArea, Table,
-  LaunchTile, MenuButton, Pagination, Indicator
+  LaunchTile, MenuButton, Pagination, Indicator, Avatar,
 } from '@lexxsoft/upui'
 import {ref} from "vue";
 
 const btnStyles = ['primary', 'secondary', 'danger', 'warning', 'success', 'info']
 const btnShapes = ['solid', 'outline', 'pill', 'free']
 const toastTypes = ['default', 'error', 'success', 'warning']
+const avatarSizes = ['sm' , 'md' , 'lg' , 'xl']
 const checkboxValue = ref(true)
 const errorText = 'Some error text'
 const currentDate = ref(new Date())
@@ -64,6 +65,7 @@ const textareaValue = ref('Text area value')
       <MenuButton label="Tile" href="#tile"></MenuButton>
       <MenuButton label="Toast" href="#toast"></MenuButton>
       <MenuButton label="Indicators" href="#indicators"></MenuButton>
+      <MenuButton label="Avatars" href="#avatars"></MenuButton>
     </aside>
     <div class="main-content ml-80 p-6">
 
@@ -834,6 +836,51 @@ const textareaValue = ref('Text area value')
 
       </section>
       <!-- /Indicators -->
+
+      <!-- Avatars -->
+      <section id="avatars">
+        <Header size="1">Avatars</Header>
+
+        <div class="mt-3">
+          <Header size="5">:size</Header>
+          'sm' | 'md' | 'lg' | 'xl'
+          <div class="flex gap-4">
+            <Avatar v-for="sz in avatarSizes" :key="sz" :size="sz"></Avatar>
+          </div>
+        </div>
+
+        <div class="mt-3">
+          <Header size="5">:letters</Header>
+          <div class="flex gap-4">
+            <Avatar v-for="sz in avatarSizes" :key="sz" :size="sz" :letters="sz"></Avatar>
+          </div>
+        </div>
+
+        <div class="mt-3">
+          <Header size="5">:src</Header>
+          <div class="flex gap-4">
+            <Avatar v-for="sz in avatarSizes" :key="sz" :size="sz" src="https://experience.sap.com/wp-content/uploads/sites/56/2017/02/Avatar-Sizes-Custom-1.png"></Avatar>
+          </div>
+        </div>
+
+        <div class="mt-3">
+          <Header size="5">:show-delete-button</Header>
+          <div class="flex gap-4">
+            <Avatar v-for="sz in avatarSizes" :show-delete-button="true" :key="sz" :size="sz" src="https://experience.sap.com/wp-content/uploads/sites/56/2017/02/Avatar-Sizes-Custom-1.png"></Avatar>
+          </div>
+          Notice! Small size (sm) does not have `delete` button!
+        </div>
+
+        <div class="mt-3">
+          <Header size="5">Hover effect</Header>
+          <p>Hover effect appear, when @click event is bind</p>
+          <div class="flex gap-4">
+            <Avatar v-for="sz in avatarSizes" @click="" :key="sz" :size="sz" src="https://experience.sap.com/wp-content/uploads/sites/56/2017/02/Avatar-Sizes-Custom-1.png"></Avatar>
+          </div>
+        </div>
+
+      </section>
+      <!-- /Avatars -->
 
     </div>
   </div>

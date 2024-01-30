@@ -1,5 +1,6 @@
 import './assets/tailwind.css'
 import Alert from "./components/Alert.vue"
+import Avatar from "./components/Avatar.vue"
 import Badge from "./components/Badge.vue"
 import Button from "./components/Button.vue"
 import Card from "./components/Card.vue"
@@ -31,6 +32,7 @@ import Toast from "./components/Toast.vue"
 
 export {
     Alert,
+    Avatar,
     Badge,
     Button,
     Card,
