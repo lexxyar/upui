@@ -91,6 +91,7 @@ const textareaValue = ref('Text area value')
       <!-- Buttons -->
       <section id="buttons">
         <Header size="1">Buttons</Header>
+        <br />
         + :strongBorder
         'primary' | 'secondary' | 'danger' | 'success' | 'warning' | 'info'
         <div class="mt-3">

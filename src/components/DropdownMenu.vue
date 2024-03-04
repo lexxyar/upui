@@ -3,7 +3,7 @@
 import {vOnClickOutside} from '@vueuse/components'
 import {ref} from "vue";
 
-type TAnchor = 'tl' | 'tr'
+type TAnchor = 'tl' | 'tr' | 'bl' | 'br'
 const emit = defineEmits<{
   (e: 'update:modelValue', state: boolean): void,
 }>()
@@ -31,6 +31,8 @@ const onClickOutside = () => {
          :class="{
             'left-0 top-0': anchor === 'tl',
             'right-0 top-0': anchor === 'tr',
+            'left-0 bottom-0': anchor === 'bl',
+            'right-0 bottom-0': anchor === 'br',
          }"
     >
       <ul class="py-1 text-sm text-gray-700 dark:text-gray-200">
