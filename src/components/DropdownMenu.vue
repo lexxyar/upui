@@ -23,9 +23,8 @@ const onClickOutside = () => {
 
 <template>
   <!-- Dropdown menu -->
-  <div class="menu-slot relative mt-1">
-    <div v-if="modelValue"
-         v-on-click-outside="onClickOutside"
+  <div class="menu-slot relative mt-1" v-if="modelValue">
+    <div v-on-click-outside="onClickOutside"
          ref="refComponent"
          class="absolute z-10 bg-white divide-y divide-gray-100 rounded shadow w-auto dark:bg-gray-700 dark:divide-gray-600 block"
          :class="{
