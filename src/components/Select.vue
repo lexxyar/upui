@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {computed, ModelRef} from "vue"
+import {computed, ModelRef, ref, useSlots} from "vue"
 import {vOnClickOutside} from '@vueuse/components'
 import InpeutErrors from "./inner/InputErrors.vue";
 
@@ -22,12 +22,15 @@ const props = withDefaults(defineProps<{
   errors: null,
   disabled: false,
 })
+const slots = useSlots()
 const model: ModelRef<any> = defineModel()
-let _expanded = false
+const _expanded = ref(false)
 const selectedName = computed({
   get: () => {
-    if (model.value == null) return ''
-    return model.value[props.valueName] ? model.value[props.valueName].toString() : ''
+    if (model.value == null || !model.value) return ''
+    const found = props.data.find((e: any) => e[props.keyName] == model.value)
+    if (!found) return ''
+    return found[props.valueName].toString()
   },
   set: (value: any) => {
     model.value = value
@@ -43,12 +46,14 @@ const onClickOutside = () => {
 const inputId = computed(() => `sl-${Date.now().toString().split("").sort(() => Math.random() - .5).join('')}`)
 
 const expanded = computed({
-  get: () => _expanded,
+  get: () => _expanded.value,
   set: (value: boolean) => {
     if (!props.disabled)
-      _expanded = value
+      _expanded.value = value
   }
 })
+
+const hasItemSlot = computed(() => Object.keys(slots).includes('item'))
 </script>
 
 <template>
@@ -76,9 +81,10 @@ const expanded = computed({
           'p-2.5 min-h-11': ['md'].includes(size),
           'p-3.5 min-h-14': ['lg'].includes(size),
         }"
+        @click="expanded = !expanded"
     >
       <div class="flex flex-nowrap justify-between items-center w-full"
-           @click.stop="expanded = !expanded"
+           :data-expanded="expanded"
       >
         <div class="">
           <span v-if="model == null" class="text-secondary-500 dark:text-secondary-400">{{ placeholder }}</span>
@@ -102,9 +108,10 @@ const expanded = computed({
     >
       <li v-for="item in data" :key="item[keyName]"
           class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-default"
-          @click="onItemSelect(item)"
+          @click="onItemSelect(item[keyName])"
       >
-        {{ item[valueName] }}
+        <slot name="item" :item="item" v-if="hasItemSlot"/>
+        <span v-else>{{ item[valueName] }}</span>
       </li>
     </ul>
     <InpeutErrors :errors="errors"/>

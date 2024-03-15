@@ -23,6 +23,7 @@ import {
   Toast,
 } from '@lexxsoft/upui'
 import {Ref, ref} from "vue";
+import TestComponent from "./TestComponent.vue";
 
 const btnStyles = ['primary', 'secondary', 'danger', 'warning', 'success', 'info']
 const btnShapes = ['solid', 'outline', 'pill', 'free']
@@ -59,7 +60,7 @@ const tableData = ref([
 ])
 const textareaValue = ref('Text area value')
 
-const selectedListItem: Ref<any> = ref(null)
+const selectedListItem: Ref<any> = ref(3)
 const list = ref([
   {id: 1, name: 'Audi'},
   {id: 2, name: 'BMW'},
@@ -93,6 +94,12 @@ const list = ref([
       <MenuButton label="Avatars" href="#avatars"></MenuButton>
     </aside>
     <div class="main-content ml-80 p-6">
+
+      <div>
+        {{selectedListItem}}
+        <TestComponent :data="list" v-model="selectedListItem">
+        </TestComponent>
+      </div>
 
       <!-- Badges -->
       <section id="badges">
