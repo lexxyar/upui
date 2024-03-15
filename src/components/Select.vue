@@ -4,6 +4,9 @@ import {vOnClickOutside} from '@vueuse/components'
 import InpeutErrors from "./inner/InputErrors.vue";
 
 type TSizes = 'sm' | 'md' | 'lg'
+const emit = defineEmits<{
+  (e: 'change', id: string | number | null): void,
+}>()
 const props = withDefaults(defineProps<{
   data: any[],
   label?: string,
@@ -34,6 +37,7 @@ const selectedName = computed({
   },
   set: (value: any) => {
     model.value = value
+    emit('change', value)
   }
 })
 const onItemSelect = (item: any) => {
