@@ -1,16 +1,33 @@
 <script setup lang="ts">
 import {
-  Button, Header, Badge, Card, Checkbox, DatePicker,
-  DropdownMenu, DropdownItem, DropdownSeparator, Toast,
-  InputText, Progress, Select, Switch, TextArea, Table,
-  LaunchTile, MenuButton, Pagination, Indicator, Avatar,
+  Avatar,
+  Badge,
+  Button,
+  Card,
+  Checkbox,
+  DatePicker,
+  DropdownItem,
+  DropdownMenu,
+  DropdownSeparator,
+  Header,
+  Indicator,
+  InputText,
+  LaunchTile,
+  MenuButton,
+  Pagination,
+  Progress,
+  Select,
+  Switch,
+  Table,
+  TextArea,
+  Toast,
 } from '@lexxsoft/upui'
-import {ref} from "vue";
+import {Ref, ref} from "vue";
 
 const btnStyles = ['primary', 'secondary', 'danger', 'warning', 'success', 'info']
 const btnShapes = ['solid', 'outline', 'pill', 'free']
 const toastTypes = ['default', 'error', 'success', 'warning']
-const avatarSizes = ['sm' , 'md' , 'lg' , 'xl']
+const avatarSizes = ['sm', 'md', 'lg', 'xl']
 const checkboxValue = ref(true)
 const errorText = 'Some error text'
 const currentDate = ref(new Date())
@@ -21,12 +38,12 @@ const switchValue = ref(false)
 const emptyString = ref('')
 const inputText = ref('Text')
 const selectList = [
-  {id: '1', value: 'Laravel'},
-  {id: '2', value: 'VueJS'},
-  {id: '3', value: 'React'},
-  {id: '4', value: 'Wordpress'},
+  {id: '1', name: 'Laravel'},
+  {id: '2', name: 'VueJS'},
+  {id: '3', name: 'React'},
+  {id: '4', name: 'Wordpress'},
 ]
-const selectedValue = ref('2')
+const selectedValue: Ref<any> = ref()
 
 const tableHeader = [
   {key: 'id'},
@@ -41,6 +58,14 @@ const tableData = ref([
   {id: '4', name: 'Bob Daniels', email: 'daniels@mail.com', age: 34},
 ])
 const textareaValue = ref('Text area value')
+
+const selectedListItem: Ref<any> = ref(null)
+const list = ref([
+  {id: 1, name: 'Audi'},
+  {id: 2, name: 'BMW'},
+  {id: 3, name: 'Subaru'},
+  {id: 4, name: 'Kia'},
+])
 </script>
 
 <template>
@@ -91,7 +116,7 @@ const textareaValue = ref('Text area value')
       <!-- Buttons -->
       <section id="buttons">
         <Header size="1">Buttons</Header>
-        <br />
+        <br/>
         + :strongBorder
         'primary' | 'secondary' | 'danger' | 'success' | 'warning' | 'info'
         <div class="mt-3">
@@ -489,8 +514,8 @@ const textareaValue = ref('Text area value')
           <div class="mt-3">
             <Header size="5">Other options</Header>
             <div class="flex gap-4">
-              <span>:keyField</span>
-              <span>:valueField</span>
+              <span>:keyName</span>
+              <span>:valueName</span>
               <span>:disabled</span>
             </div>
           </div>
@@ -860,14 +885,16 @@ const textareaValue = ref('Text area value')
         <div class="mt-3">
           <Header size="5">:src</Header>
           <div class="flex gap-4">
-            <Avatar v-for="sz in avatarSizes" :key="sz" :size="sz" src="https://experience.sap.com/wp-content/uploads/sites/56/2017/02/Avatar-Sizes-Custom-1.png"></Avatar>
+            <Avatar v-for="sz in avatarSizes" :key="sz" :size="sz"
+                    src="https://experience.sap.com/wp-content/uploads/sites/56/2017/02/Avatar-Sizes-Custom-1.png"></Avatar>
           </div>
         </div>
 
         <div class="mt-3">
           <Header size="5">:show-delete-button</Header>
           <div class="flex gap-4">
-            <Avatar v-for="sz in avatarSizes" :show-delete-button="true" :key="sz" :size="sz" src="https://experience.sap.com/wp-content/uploads/sites/56/2017/02/Avatar-Sizes-Custom-1.png"></Avatar>
+            <Avatar v-for="sz in avatarSizes" :show-delete-button="true" :key="sz" :size="sz"
+                    src="https://experience.sap.com/wp-content/uploads/sites/56/2017/02/Avatar-Sizes-Custom-1.png"></Avatar>
           </div>
           Notice! Small size (sm) does not have `delete` button!
         </div>
@@ -876,7 +903,8 @@ const textareaValue = ref('Text area value')
           <Header size="5">Hover effect</Header>
           <p>Hover effect appear, when @click event is bind</p>
           <div class="flex gap-4">
-            <Avatar v-for="sz in avatarSizes" @click="" :key="sz" :size="sz" src="https://experience.sap.com/wp-content/uploads/sites/56/2017/02/Avatar-Sizes-Custom-1.png"></Avatar>
+            <Avatar v-for="sz in avatarSizes" @click="" :key="sz" :size="sz"
+                    src="https://experience.sap.com/wp-content/uploads/sites/56/2017/02/Avatar-Sizes-Custom-1.png"></Avatar>
           </div>
         </div>
 

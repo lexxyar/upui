@@ -1,82 +1,112 @@
 <script setup lang="ts">
-import {computed} from 'vue'
+import {computed, ModelRef} from "vue"
+import {vOnClickOutside} from '@vueuse/components'
 import InpeutErrors from "./inner/InputErrors.vue";
 
 type TSizes = 'sm' | 'md' | 'lg'
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: string): void,
-  (e: 'change', value: string): void,
-}>()
 const props = withDefaults(defineProps<{
+  data: any[],
   label?: string,
+  placeholder?: string,
   size?: TSizes,
-  modelValue: string,
-  disabled?: boolean,
+  keyName?: string,
+  valueName?: string,
   errors?: string | Array<string> | null,
-  data?: Array<any>,
-  keyField?: string,
-  valueField?: string,
+  disabled?: boolean,
 }>(), {
   label: '',
+  placeholder: '',
   size: 'md',
-  modelValue: '',
-  disabled: false,
+  keyName: 'id',
+  valueName: 'name',
   errors: null,
-  // @ts-ignore
-  data: [],
-  keyField: 'id',
-  valueField: 'value',
+  disabled: false,
 })
-
-const modelValueSync = computed({
-  get(): string {
-    return props.modelValue
+const model: ModelRef<any> = defineModel()
+let _expanded = false
+const selectedName = computed({
+  get: () => {
+    if (model.value == null) return ''
+    return model.value[props.valueName] ? model.value[props.valueName].toString() : ''
   },
-  set(value: string) {
-    if (props.disabled) return
-    emit('update:modelValue', value)
-    emit('change', value)
+  set: (value: any) => {
+    model.value = value
   }
 })
-
+const onItemSelect = (item: any) => {
+  selectedName.value = item
+  expanded.value = false
+}
+const onClickOutside = () => {
+  expanded.value = false
+}
 const inputId = computed(() => `sl-${Date.now().toString().split("").sort(() => Math.random() - .5).join('')}`)
+
+const expanded = computed({
+  get: () => _expanded,
+  set: (value: boolean) => {
+    if (!props.disabled)
+      _expanded = value
+  }
+})
 </script>
 
 <template>
-  <div>
+  <div class="component-container relative"
+       v-on-click-outside="onClickOutside"
+  >
     <label v-if="label.length > 0"
            :for="inputId"
-           class="block mb-2 font-medium"
+           class="block font-medium"
            :class="{
-                'text-sm'                       : ['sm', 'md'].includes(size),
-                'text-base'                     : size==='lg',
+                'text-sm mb-2'                       : ['sm', 'md'].includes(size),
+                'text-base mb-1'                     : size==='lg',
                 'text-gray-900 dark:text-white' : !errors,
                 'text-danger-500'                  : errors,
            }"
     >
       {{ label }}
     </label>
-    <select :id="inputId"
-            v-model="modelValueSync"
-            class="block border rounded-lg bg-gray-50 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:placeholder-gray-400 dark:focus:ring-primary-500 dark:focus:border-primary-500"
-            :class="{
-                'p-2        text-sm  '                                               : size==='sm',
-                'p-2.5      text-sm  '                                               : size==='md',
-                'px-4  py-3 text-base'                                               : size==='lg',
-                'border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white' : !errors,
-                'border-danger-500 text-danger-500'                                        : errors,
-            }"
+    <div
+        class="flex items-center bg-gray-50 text-sm border rounded-lg focus:ring-info-500 focus:border-info-500 w-full dark:bg-gray-700 dark:placeholder-secondary-400 dark:focus:ring-info-500 dark:focus:border-info-500"
+        :class="{
+          'border-gray-300 dark:border-secondary-600 text-secondary-900 dark:text-white': !errors,
+          'border-danger-500 text-danger-500': errors,
+          'px-2.5 py-2 min-h-9': ['sm'].includes(size),
+          'p-2.5 min-h-11': ['md'].includes(size),
+          'p-3.5 min-h-14': ['lg'].includes(size),
+        }"
     >
-      <option v-for="item in data"
-              :key="item[keyField]"
-              :value="item[keyField]"
-              :selected="modelValue === item[keyField]"
-              :disabled="item[keyField] === '0'"
-              :hidden="item[keyField] === '0'"
+      <div class="flex flex-nowrap justify-between items-center w-full"
+           @click.stop="expanded = !expanded"
       >
-        {{ item[valueField] }}
-      </option>
-    </select>
+        <div class="">
+          <span v-if="model == null" class="text-secondary-500 dark:text-secondary-400">{{ placeholder }}</span>
+          <span>{{ selectedName }}</span>
+        </div>
+        <div class=""
+
+        >
+          <svg class="w-2.5 h-2.5 ms-3"
+               :class="{'rotate-180': expanded}"
+               aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+               viewBox="0 0 10 6">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="m1 1 4 4 4-4"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <ul class="absolute left-0 right-0 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 text-sm text-gray-700 dark:text-gray-200"
+        v-if="expanded"
+    >
+      <li v-for="item in data" :key="item[keyName]"
+          class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-default"
+          @click="onItemSelect(item)"
+      >
+        {{ item[valueName] }}
+      </li>
+    </ul>
     <InpeutErrors :errors="errors"/>
   </div>
 </template>
